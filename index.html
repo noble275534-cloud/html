@@ -37,7 +37,6 @@
             background-color: #0ea5e9; transition: width 0.3s ease;
         }
         .nav-link:hover::after { width: 100%; }
-        /* 스크롤바 커스텀 */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #f1f5f9; }
         ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
@@ -55,7 +54,6 @@
             </a>
             
             <nav class="hidden lg:flex items-center gap-10 text-sm font-semibold text-slate-600">
-                <!-- Public Group -->
                 <div class="flex items-center gap-6">
                     <span class="text-xs uppercase tracking-wider text-slate-400">Public</span>
                     <a href="#overview" class="nav-link hover:text-brand-500">OVERVIEW</a>
@@ -64,12 +62,10 @@
                     <a href="#products" class="nav-link hover:text-brand-500">PRODUCTS</a>
                     <a href="#credentials" class="nav-link hover:text-brand-500">CREDENTIALS</a>
                 </div>
-                <!-- Media Group -->
                 <div class="flex items-center gap-6 border-l border-slate-200 pl-6">
                     <span class="text-xs uppercase tracking-wider text-slate-400">Media</span>
                     <a href="#media" class="nav-link hover:text-brand-500">MEDIA HUB</a>
                 </div>
-                <!-- Internal Group -->
                 <div class="flex items-center gap-6 border-l border-slate-200 pl-6">
                     <span class="text-xs uppercase tracking-wider text-brand-500">Internal</span>
                     <a href="#internal" class="px-4 py-2 bg-slate-900 text-white rounded-md hover:bg-brand-500 transition">INTRANET</a>
@@ -79,7 +75,6 @@
     </header>
 
     <!-- PUBLIC 영역 -->
-    <!-- 1. OVERVIEW (Hero) -->
     <section id="overview" class="relative pt-20 h-screen min-h-[600px] flex items-center hero-bg">
         <div class="max-w-7xl mx-auto px-6 relative z-10 w-full">
             <div class="max-w-3xl">
@@ -102,7 +97,7 @@
         </div>
     </section>
 
-    <!-- 2. ABOUT -->
+    <!-- ABOUT -->
     <section id="about" class="py-24 bg-white">
         <div class="max-w-7xl mx-auto px-6">
             <div class="flex flex-col md:flex-row justify-between items-end mb-12 border-b border-slate-200 pb-6">
@@ -116,7 +111,6 @@
             </div>
             
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                <!-- Info Cards -->
                 <div class="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div class="bg-slate-50 p-8 rounded-2xl border border-slate-100">
                         <h3 class="text-sm font-bold text-slate-400 mb-6 uppercase tracking-wider">Corporate Info</h3>
@@ -137,7 +131,6 @@
                         </dl>
                     </div>
                 </div>
-                <!-- Location Box -->
                 <div class="bg-brand-900 text-white p-8 rounded-2xl flex flex-col justify-center relative overflow-hidden">
                     <div class="absolute -right-10 -bottom-10 opacity-10">
                         <svg class="w-64 h-64" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zM7 9c0-2.76 2.24-5 5-5s5 2.24 5 5c0 2.88-2.88 7.19-5 9.88C9.92 16.21 7 11.85 7 9z"/><circle cx="12" cy="9" r="2.5"/></svg>
@@ -153,7 +146,7 @@
         </div>
     </section>
 
-    <!-- 3. HISTORY -->
+    <!-- HISTORY -->
     <section id="history" class="py-24 bg-slate-50">
         <div class="max-w-7xl mx-auto px-6">
             <div class="flex justify-between items-end mb-16">
@@ -166,7 +159,6 @@
             
             <div class="relative border-l-2 border-brand-200 ml-4 md:ml-0 md:pl-0">
                 <div class="space-y-12">
-                    <!-- Event 1 -->
                     <div class="relative pl-8 md:pl-0 md:flex md:items-center gap-8 group">
                         <div class="absolute left-[-9px] md:relative md:left-0 w-4 h-4 rounded-full bg-white border-4 border-brand-500 z-10 group-hover:scale-150 transition-transform"></div>
                         <div class="md:w-32 flex-shrink-0"><span class="text-xl font-bold text-brand-500">2024</span></div>
@@ -177,7 +169,6 @@
                             </ul>
                         </div>
                     </div>
-                    <!-- Event 2 -->
                     <div class="relative pl-8 md:pl-0 md:flex md:items-center gap-8 group">
                         <div class="absolute left-[-9px] md:relative md:left-0 w-4 h-4 rounded-full bg-white border-4 border-slate-300 z-10 group-hover:border-brand-500 transition-colors"></div>
                         <div class="md:w-32 flex-shrink-0"><span class="text-xl font-bold text-slate-400 group-hover:text-brand-500 transition">2023 - 2017</span></div>
@@ -188,7 +179,6 @@
                             </ul>
                         </div>
                     </div>
-                    <!-- Event 3 -->
                     <div class="relative pl-8 md:pl-0 md:flex md:items-center gap-8 group">
                         <div class="absolute left-[-9px] md:relative md:left-0 w-4 h-4 rounded-full bg-white border-4 border-slate-300 z-10 group-hover:border-brand-500 transition-colors"></div>
                         <div class="md:w-32 flex-shrink-0"><span class="text-xl font-bold text-slate-400 group-hover:text-brand-500 transition">2013 - 2010</span></div>
@@ -205,10 +195,9 @@
         </div>
     </section>
 
-    <!-- 4. PRODUCTS & CREDENTIALS -->
+    <!-- PRODUCTS & CREDENTIALS -->
     <section id="products" class="py-24 bg-white">
         <div class="max-w-7xl mx-auto px-6">
-            <!-- Products Header -->
             <div class="flex justify-between items-end mb-12">
                 <div>
                     <h2 class="text-4xl font-bold text-brand-900 tracking-tight">PRODUCTS</h2>
@@ -217,7 +206,6 @@
                 <button @click="openPdf('ji.pdf#page=8', '제조물품 (8p)')" class="text-sm font-medium text-brand-500 hover:text-brand-800">PDF로 보기 &rarr;</button>
             </div>
 
-            <!-- Product Tags -->
             <div class="flex flex-wrap gap-3 mb-24">
                 <span class="px-5 py-3 bg-slate-50 text-slate-700 rounded-lg border border-slate-200 font-medium hover:border-brand-500 hover:text-brand-600 transition cursor-default">다단벌류트펌프</span>
                 <span class="px-5 py-3 bg-slate-50 text-slate-700 rounded-lg border border-slate-200 font-medium hover:border-brand-500 hover:text-brand-600 transition cursor-default">단단벌류트펌프</span>
@@ -229,7 +217,6 @@
                 <span class="px-5 py-3 bg-slate-50 text-slate-700 rounded-lg border border-slate-200 font-medium hover:border-brand-500 hover:text-brand-600 transition cursor-default">기타 산업용 펌프</span>
             </div>
 
-            <!-- Credentials -->
             <div id="credentials" class="pt-12 border-t border-slate-200">
                 <h2 class="text-2xl font-bold text-brand-900 mb-8">인증 및 특허 현황 <span class="text-sm font-normal text-slate-500 ml-2">클릭 시 해당 인증서 PDF 열람</span></h2>
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -264,14 +251,15 @@
 
             <!-- Top Grid: Video & Brochure -->
             <div class="grid grid-cols-1 lg:grid-cols-5 gap-8 mb-16">
-                <!-- Video (col-span-3) -->
+                <!-- Video -->
                 <div class="lg:col-span-3 bg-slate-800 rounded-2xl p-6 border border-slate-700">
                     <h3 class="text-xl font-bold mb-4 flex items-center gap-2"><svg class="w-5 h-5 text-brand-500" fill="currentColor" viewBox="0 0 20 20"><path d="M2 6a2 2 0 012-2h6a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2V6zM14.553 7.106A1 1 0 0014 8v4a1 1 0 00.553.894l2 1A1 1 0 0018 13V7a1 1 0 00-1.447-.894l-2 1z"></path></svg> 기업 홍보 영상</h3>
-                    <div class="rounded-xl overflow-hidden aspect-video bg-black shadow-2xl">
-                        <video src="batechppl.mp4" autoplay loop muted playsinline class="w-full h-full object-cover opacity-90 hover:opacity-100 transition"></video>
+                    <div class="rounded-xl overflow-hidden aspect-video bg-black shadow-2xl relative">
+                        <video src="./batechppl.mp4" autoplay loop muted playsinline class="w-full h-full object-cover opacity-90 hover:opacity-100 transition"></video>
+                        <div class="absolute inset-0 flex items-center justify-center -z-10 bg-slate-800 text-slate-400 text-sm">batechppl.mp4 파일이 필요합니다.</div>
                     </div>
                 </div>
-                <!-- Brochure (col-span-2) -->
+                <!-- Brochure -->
                 <div class="lg:col-span-2 bg-gradient-to-br from-brand-800 to-brand-900 rounded-2xl p-8 border border-brand-700 flex flex-col justify-between shadow-2xl">
                     <div>
                         <span class="bg-brand-500 text-white text-xs font-bold px-3 py-1 rounded-full inline-block mb-4">Official</span>
@@ -285,24 +273,29 @@
                 </div>
             </div>
 
-            <!-- Card News -->
+            <!-- ★ 수정된 카드뉴스 영역 (JPG로 변경) ★ -->
             <div>
                 <h3 class="text-xl font-bold mb-6 flex items-center gap-2"><svg class="w-5 h-5 text-brand-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg> 주요 소식 (카드뉴스)</h3>
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-                    <div class="rounded-xl overflow-hidden shadow-lg bg-slate-800 border border-slate-700 group cursor-pointer relative aspect-square">
-                        <img src="1.png" alt="Card News 1" class="w-full h-full object-cover transform transition duration-500 group-hover:scale-110 opacity-80 group-hover:opacity-100">
+                    <!-- 카드 1 -->
+                    <div class="rounded-xl overflow-hidden shadow-lg bg-slate-800 border border-slate-700 group cursor-pointer relative aspect-[3/4]">
+                        <img src="./1.jpg" alt="Card News 1" onerror="this.src='https://via.placeholder.com/400x533/1e293b/94a3b8?text=1.jpg+Not+Found'" class="absolute inset-0 w-full h-full object-cover transform transition duration-500 group-hover:scale-110 opacity-80 group-hover:opacity-100">
                     </div>
-                    <div class="rounded-xl overflow-hidden shadow-lg bg-slate-800 border border-slate-700 group cursor-pointer relative aspect-square">
-                        <img src="2.png" alt="Card News 2" class="w-full h-full object-cover transform transition duration-500 group-hover:scale-110 opacity-80 group-hover:opacity-100">
+                    <!-- 카드 2 -->
+                    <div class="rounded-xl overflow-hidden shadow-lg bg-slate-800 border border-slate-700 group cursor-pointer relative aspect-[3/4]">
+                        <img src="./2.jpg" alt="Card News 2" onerror="this.src='https://via.placeholder.com/400x533/1e293b/94a3b8?text=2.jpg+Not+Found'" class="absolute inset-0 w-full h-full object-cover transform transition duration-500 group-hover:scale-110 opacity-80 group-hover:opacity-100">
                     </div>
-                    <div class="rounded-xl overflow-hidden shadow-lg bg-slate-800 border border-slate-700 group cursor-pointer relative aspect-square">
-                        <img src="3.png" alt="Card News 3" class="w-full h-full object-cover transform transition duration-500 group-hover:scale-110 opacity-80 group-hover:opacity-100">
+                    <!-- 카드 3 -->
+                    <div class="rounded-xl overflow-hidden shadow-lg bg-slate-800 border border-slate-700 group cursor-pointer relative aspect-[3/4]">
+                        <img src="./3.jpg" alt="Card News 3" onerror="this.src='https://via.placeholder.com/400x533/1e293b/94a3b8?text=3.jpg+Not+Found'" class="absolute inset-0 w-full h-full object-cover transform transition duration-500 group-hover:scale-110 opacity-80 group-hover:opacity-100">
                     </div>
-                    <div class="rounded-xl overflow-hidden shadow-lg bg-slate-800 border border-slate-700 group cursor-pointer relative aspect-square">
-                        <img src="4.png" alt="Card News 4" class="w-full h-full object-cover transform transition duration-500 group-hover:scale-110 opacity-80 group-hover:opacity-100">
+                    <!-- 카드 4 -->
+                    <div class="rounded-xl overflow-hidden shadow-lg bg-slate-800 border border-slate-700 group cursor-pointer relative aspect-[3/4]">
+                        <img src="./4.jpg" alt="Card News 4" onerror="this.src='https://via.placeholder.com/400x533/1e293b/94a3b8?text=4.jpg+Not+Found'" class="absolute inset-0 w-full h-full object-cover transform transition duration-500 group-hover:scale-110 opacity-80 group-hover:opacity-100">
                     </div>
                 </div>
             </div>
+            <!-- ★ 수정된 카드뉴스 영역 끝 ★ -->
         </div>
     </section>
 
@@ -320,8 +313,7 @@
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                
-                <!-- 1. 이번달 일정 (Calendar) -->
+                <!-- 이번달 일정 (Calendar) -->
                 <div class="bg-white rounded-2xl p-8 shadow-sm border border-slate-200 lg:col-span-2">
                     <h3 class="text-lg font-bold text-slate-800 mb-6 flex items-center gap-2">
                         <svg class="w-5 h-5 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
@@ -346,13 +338,8 @@
                         </div>
                         <div class="py-3 bg-indigo-50 text-indigo-700 font-bold rounded-lg border border-indigo-200 relative group cursor-pointer">4<div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block w-max bg-slate-800 text-white text-xs py-1 px-2 rounded shadow-lg z-10">전사 정기회의</div></div>
                         <div class="py-3 bg-slate-50 rounded-lg hover:bg-slate-100">5</div>
-                        
-                        <!-- Week 2 dummy -->
                         <div class="py-3 bg-slate-50 rounded-lg">6</div><div class="py-3 bg-slate-50 rounded-lg">7</div><div class="py-3 bg-slate-50 rounded-lg">8</div><div class="py-3 bg-slate-50 rounded-lg">9</div><div class="py-3 bg-slate-50 rounded-lg">10</div><div class="py-3 bg-indigo-50 text-indigo-700 font-bold rounded-lg border border-indigo-200 relative group cursor-pointer">11<div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block w-max bg-slate-800 text-white text-xs py-1 px-2 rounded shadow-lg z-10">전사 정기회의</div></div><div class="py-3 bg-slate-50 rounded-lg">12</div>
-                        
-                        <!-- Skipped weeks for brevity -->
                         <div class="py-3 text-slate-400 col-span-7 flex items-center justify-center">...</div>
-
                         <div class="py-3 bg-slate-50 rounded-lg">22</div>
                         <div class="py-3 bg-slate-50 rounded-lg">23</div>
                         <div class="py-3 bg-rose-50 text-rose-700 font-bold rounded-lg border border-rose-200 relative group cursor-pointer">
@@ -366,7 +353,7 @@
                     </div>
                 </div>
 
-                <!-- 2. AI Work Tool (NotebookLM) -->
+                <!-- AI Work Tool (NotebookLM) -->
                 <div class="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl p-8 shadow-sm border border-slate-800 text-white flex flex-col justify-between">
                     <div>
                         <div class="inline-flex items-center gap-2 px-3 py-1 bg-brand-500/20 text-brand-400 rounded-full text-xs font-bold mb-6">
