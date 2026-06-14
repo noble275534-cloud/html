@@ -1,3 +1,6 @@
+비에이텍(주)의 웹사이트 및 임직원 인트라넷 통합 리뉴얼 HTML 코드 전문입니다. 우측 상단의 복사(Copy) 버튼을 이용하여 편리하게 붙여넣어 사용하실 수 있습니다.
+
+```html
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -42,14 +45,16 @@
         ::-webkit-scrollbar-track { background: #0f172a; }
         ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 4px; border: 2px solid #0f172a; }
         ::-webkit-scrollbar-thumb:hover { background: #0ea5e9; }
+
         /* Hero Background with High-Tech overlay */
         .hero-bg {
             background-image: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 30%, rgba(6, 182, 212, 0.45) 80%, rgba(15, 23, 42, 0.9) 100%), 
-                              url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=2000&q=80');
+                              url('https://images.unsplash.com/photo-1470075801209-17f9ec0cada6?auto=format&fit=crop&w=2000&q=80');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
         }
+
         /* Glassmorphism Navigation */
         .nav-link { position: relative; display: inline-block; padding-bottom: 0.25rem; }
         .nav-link::after {
@@ -57,6 +62,7 @@
             background-color: #0ea5e9; transition: width 0.3s ease;
         }
         .nav-link:hover::after { width: 100%; }
+
         /* Glow border animation effects */
         .glow-card {
             position: relative;
@@ -83,6 +89,7 @@
         .glow-card:hover::before {
             opacity: 0.6;
         }
+
         /* Intersection Observer Animation Classes */
         .fade-up {
             opacity: 0;
@@ -94,6 +101,7 @@
             opacity: 1;
             transform: translateY(0);
         }
+
         /* Timeline motion styles */
         .timeline-item {
             opacity: 0;
@@ -105,6 +113,7 @@
             opacity: 1;
             transform: translateX(0);
         }
+
         /* Premium TV Frame Effect */
         .tv-screen {
             position: relative;
@@ -123,9 +132,11 @@
             pointer-events: none;
             z-index: 5;
         }
+
         /* Org chart connecting lines */
         .org-line-v { width: 2px; background-color: #0ea5e9; }
         .org-line-h { height: 2px; background-color: #0ea5e9; }
+
         /* Simulated progress bar */
         @keyframes progress-pulse {
             0%, 100% { opacity: 0.6; }
@@ -152,6 +163,7 @@
           aiLogs: [],
           isIngesting: false,
           isDragOver: false,
+
           openPdfModal(url, title, type = 'pdf') {
               this.modalTitle = title;
               this.docType = type;
@@ -164,34 +176,41 @@
                   this.docLoading = false;
               }, 600);
           },
+
           triggerDemoUpload() {
               if (this.isIngesting) return;
               this.isIngesting = true;
               this.uploadProgress = 0;
               this.aiLogs = ['[SYSTEM] 정비 매뉴얼 파싱을 준비합니다...'];
+
               // Step transitions
               let timer1 = setTimeout(() => {
                   this.uploadProgress = 35;
                   this.aiLogs.push('🔍 [PARSING] 정비 매뉴얼 분석 및 데이터 파싱 시작...');
               }, 800);
+
               let timer2 = setTimeout(() => {
                   this.uploadProgress = 70;
                   this.aiLogs.push('🧠 [TRAINING] 유체공학 기술 지식베이스 기계학습 모델 트레이닝 중...');
               }, 1800);
+
               let timer3 = setTimeout(() => {
                   this.uploadProgress = 100;
                   this.aiLogs.push('⚡ [INTEGRATION] AI 가압 기술 및 밸브 진단 모듈 연동 완료!');
                   this.aiLogs.push('✅ [SUCCESS] NotebookLM 하이브리드 엔진 동작 상태: 정상 (온라인)');
               }, 2900);
+
               let timer4 = setTimeout(() => {
                   this.isIngesting = false;
               }, 4000);
           },
+
           submitForm(e) {
               alert('성공적으로 기술 문의가 비에이텍 담당자에게 전달되었습니다.');
               e.target.reset();
           }
       }">
+
     <!-- Header / Navigation -->
     <header class="fixed top-0 w-full bg-slate-950/90 backdrop-blur-md border-b border-slate-800 z-50 transition-all duration-300">
         <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
@@ -219,6 +238,7 @@
                     <a href="#contact" class="nav-link hover:text-brand-400 transition">고객지원</a>
                 </div>
             </nav>
+
             <!-- Navigation Mode Switcher -->
             <div class="flex items-center gap-3 bg-slate-900 border border-slate-800 p-1.5 rounded-full shadow-inner">
                 <span class="text-xs font-semibold px-2 transition-colors duration-200" :class="mode === 'public' ? 'text-brand-400 font-bold' : 'text-slate-500'">
@@ -237,6 +257,7 @@
             </div>
         </div>
     </header>
+
     <!-- PUBLIC PORTAL VIEW -->
     <main x-show="mode === 'public'" x-transition:enter="transition ease-out duration-500" x-transition:enter-start="opacity-0 translate-y-6" x-transition:enter-end="opacity-100 translate-y-0">
         
@@ -277,6 +298,7 @@
                     </div>
                 </div>
             </div>
+
             <!-- Bottom core capabilities (3 cards) -->
             <div class="w-full bg-slate-950/60 backdrop-blur-md border-t border-slate-800 py-8 relative z-20">
                 <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -313,6 +335,7 @@
                 </div>
             </div>
         </section>
+
         <!-- [기업 소개 & 조직도] -->
         <section id="about" class="py-28 bg-slate-900 border-t border-slate-800 relative">
             <div class="max-w-7xl mx-auto px-6">
@@ -372,6 +395,7 @@
                             </div>
                         </div>
                     </div>
+
                     <!-- Right: Organizational Chart Tree -->
                     <div class="bg-slate-950 p-8 rounded-3xl border border-slate-800 flex flex-col justify-center items-center overflow-hidden fade-up" data-delay="200">
                         <h3 class="text-lg font-bold text-white mb-8 self-start flex items-center gap-2">
@@ -388,6 +412,7 @@
                                 </div>
                                 <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[2px] h-8 bg-brand-500"></div>
                             </div>
+
                             <!-- Horizontal Connector Line -->
                             <div class="relative w-11/12 flex justify-between items-start">
                                 <div class="absolute top-0 left-0 right-0 h-[2px] bg-brand-500"></div>
@@ -400,6 +425,7 @@
                                         <span class="block text-[9px] font-normal text-slate-400 mt-1">인사 / 행정 / 회계</span>
                                     </div>
                                 </div>
+
                                 <div class="flex flex-col items-center pt-8 relative w-1/4">
                                     <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[2px] h-8 bg-brand-500"></div>
                                     <div class="bg-slate-900 text-slate-200 p-3 rounded-xl border border-slate-700/80 shadow-md text-xs font-bold text-center w-[110px] hover:border-brand-500 transition-colors">
@@ -407,6 +433,7 @@
                                         <span class="block text-[9px] font-normal text-slate-400 mt-1">펌프 제조 / 용접 / 설치</span>
                                     </div>
                                 </div>
+
                                 <div class="flex flex-col items-center pt-8 relative w-1/4">
                                     <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[2px] h-8 bg-brand-500"></div>
                                     <div class="bg-slate-900 text-slate-200 p-3 rounded-xl border border-slate-700/80 shadow-md text-xs font-bold text-center w-[110px] hover:border-brand-500 transition-colors">
@@ -414,6 +441,7 @@
                                         <span class="block text-[9px] font-normal text-slate-400 mt-1">테스트 검수 / ISO</span>
                                     </div>
                                 </div>
+
                                 <div class="flex flex-col items-center pt-8 relative w-1/4">
                                     <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[2px] h-8 bg-brand-500"></div>
                                     <div class="bg-slate-900 text-slate-200 p-3 rounded-xl border border-slate-700/80 shadow-md text-xs font-bold text-center w-[110px] hover:border-brand-500 transition-colors">
@@ -427,6 +455,7 @@
                 </div>
             </div>
         </section>
+
         <!-- [홍보 영상] -->
         <section class="py-24 bg-slate-950 border-t border-slate-900 relative">
             <div class="max-w-7xl mx-auto px-6 flex flex-col items-center">
@@ -450,6 +479,7 @@
                 </div>
             </div>
         </section>
+
         <!-- [인스타그램 캠페인] -->
         <section id="campaign" class="py-28 bg-slate-900 border-t border-slate-800">
             <div class="max-w-7xl mx-auto px-6">
@@ -459,11 +489,12 @@
                     <h2 class="text-3xl md:text-5xl font-black text-white mt-4 tracking-tight">비에이텍과 함께하는 친환경 물 순환 캠페인</h2>
                     <p class="text-slate-400 mt-2 text-sm md:text-base">도시와 자연이 함께 건강한 물 순환 생태계를 향한 비에이텍의 환경 선언</p>
                 </div>
+
                 <!-- Instagram Grid -->
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                     <!-- Post 1 -->
-                    <div class="relative overflow-hidden rounded-2xl aspect-square group border border-slate-800 shadow-xl fade-up" data-delay="100">
-                        <img src="https://images.unsplash.com/photo-1470075801209-17f9ec0cada6?auto=format&fit=crop&w=600&q=80" alt="Eco Water 1" class="absolute inset-0 w-full h-full object-cover transform transition duration-700 group-hover:scale-110">
+                    <div class="relative overflow-hidden rounded-2xl aspect-[3/4] group border border-slate-800 shadow-xl fade-up" data-delay="100">
+                        <img src="./1.jpg" alt="Eco Water 1" onerror="this.src='https://via.placeholder.com/400x533/1e293b/94a3b8?text=1.jpg+Not+Found'" class="absolute inset-0 w-full h-full object-cover transform transition duration-700 group-hover:scale-110">
                         <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent"></div>
                         <div class="absolute bottom-0 left-0 right-0 p-6 text-white flex flex-col justify-end">
                             <span class="text-[10px] text-brand-400 font-bold uppercase tracking-wider mb-2">Theme 01</span>
@@ -474,8 +505,8 @@
                         </div>
                     </div>
                     <!-- Post 2 -->
-                    <div class="relative overflow-hidden rounded-2xl aspect-square group border border-slate-800 shadow-xl fade-up" data-delay="200">
-                        <img src="https://images.unsplash.com/photo-1508962914676-134849a727f0?auto=format&fit=crop&w=600&q=80" alt="Eco Water 2" class="absolute inset-0 w-full h-full object-cover transform transition duration-700 group-hover:scale-110">
+                    <div class="relative overflow-hidden rounded-2xl aspect-[3/4] group border border-slate-800 shadow-xl fade-up" data-delay="200">
+                        <img src="./2.jpg" alt="Eco Water 2" onerror="this.src='https://via.placeholder.com/400x533/1e293b/94a3b8?text=2.jpg+Not+Found'" class="absolute inset-0 w-full h-full object-cover transform transition duration-700 group-hover:scale-110">
                         <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent"></div>
                         <div class="absolute bottom-0 left-0 right-0 p-6 text-white flex flex-col justify-end">
                             <span class="text-[10px] text-cyan-400 font-bold uppercase tracking-wider mb-2">Theme 02</span>
@@ -486,8 +517,8 @@
                         </div>
                     </div>
                     <!-- Post 3 -->
-                    <div class="relative overflow-hidden rounded-2xl aspect-square group border border-slate-800 shadow-xl fade-up" data-delay="300">
-                        <img src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&w=600&q=80" alt="Eco Water 3" class="absolute inset-0 w-full h-full object-cover transform transition duration-700 group-hover:scale-110">
+                    <div class="relative overflow-hidden rounded-2xl aspect-[3/4] group border border-slate-800 shadow-xl fade-up" data-delay="300">
+                        <img src="./3.jpg" alt="Eco Water 3" onerror="this.src='https://via.placeholder.com/400x533/1e293b/94a3b8?text=3.jpg+Not+Found'" class="absolute inset-0 w-full h-full object-cover transform transition duration-700 group-hover:scale-110">
                         <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent"></div>
                         <div class="absolute bottom-0 left-0 right-0 p-6 text-white flex flex-col justify-end">
                             <span class="text-[10px] text-indigo-400 font-bold uppercase tracking-wider mb-2">Theme 03</span>
@@ -498,8 +529,8 @@
                         </div>
                     </div>
                     <!-- Post 4 -->
-                    <div class="relative overflow-hidden rounded-2xl aspect-square group border border-slate-800 shadow-xl fade-up" data-delay="400">
-                        <img src="https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?auto=format&fit=crop&w=600&q=80" alt="Eco Water 4" class="absolute inset-0 w-full h-full object-cover transform transition duration-700 group-hover:scale-110">
+                    <div class="relative overflow-hidden rounded-2xl aspect-[3/4] group border border-slate-800 shadow-xl fade-up" data-delay="400">
+                        <img src="./4.jpg" alt="Eco Water 4" onerror="this.src='https://via.placeholder.com/400x533/1e293b/94a3b8?text=4.jpg+Not+Found'" class="absolute inset-0 w-full h-full object-cover transform transition duration-700 group-hover:scale-110">
                         <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent"></div>
                         <div class="absolute bottom-0 left-0 right-0 p-6 text-white flex flex-col justify-end">
                             <span class="text-[10px] text-emerald-400 font-bold uppercase tracking-wider mb-2">Theme 04</span>
@@ -512,6 +543,7 @@
                 </div>
             </div>
         </section>
+
         <!-- [수직 타임라인 연혁] -->
         <section id="history" class="py-28 bg-slate-950 border-t border-slate-900 relative">
             <div class="max-w-7xl mx-auto px-6">
@@ -526,10 +558,12 @@
                         연혁 파일 열람 &rarr;
                     </button>
                 </div>
+
                 <!-- Timeline Axis Container -->
                 <div class="relative w-full">
                     <!-- Central Vertical Axis Line -->
                     <div class="absolute left-1/2 transform -translate-x-1/2 w-0.5 h-full bg-slate-800"></div>
+
                     <!-- Timeline items (Zig-zag) -->
                     <div class="space-y-16">
                         
@@ -545,6 +579,7 @@
                             </div>
                             <div class="hidden md:block w-[45%]"></div>
                         </div>
+
                         <!-- 2012 (Right) -->
                         <div class="relative flex items-center justify-start md:justify-end w-full timeline-item timeline-item-right">
                             <div class="hidden md:block w-[45%]"></div>
@@ -557,6 +592,7 @@
                                 <p class="text-slate-400 text-xs mt-1">기술 신뢰도 확보 및 가압 펌프 가공 설비 라인 증설</p>
                             </div>
                         </div>
+
                         <!-- 2013 (Left) -->
                         <div class="relative flex items-center justify-start md:justify-between w-full timeline-item timeline-item-left">
                             <div class="w-full md:w-[45%] bg-slate-900 p-6 rounded-2xl border border-slate-800 shadow-xl">
@@ -569,6 +605,7 @@
                             </div>
                             <div class="hidden md:block w-[45%]"></div>
                         </div>
+
                         <!-- 2017 (Right) -->
                         <div class="relative flex items-center justify-start md:justify-end w-full timeline-item timeline-item-right">
                             <div class="hidden md:block w-[45%]"></div>
@@ -581,6 +618,7 @@
                                 <p class="text-slate-400 text-xs mt-1">강원특별자치도 상수도 관리 및 안정적인 공급에 기여한 공로 표창</p>
                             </div>
                         </div>
+
                         <!-- 2023 (Left) -->
                         <div class="relative flex items-center justify-start md:justify-between w-full timeline-item timeline-item-left">
                             <div class="w-full md:w-[45%] bg-slate-900 p-6 rounded-2xl border border-slate-800 shadow-xl">
@@ -593,6 +631,7 @@
                             </div>
                             <div class="hidden md:block w-[45%]"></div>
                         </div>
+
                         <!-- 2024 (Right) -->
                         <div class="relative flex items-center justify-start md:justify-end w-full timeline-item timeline-item-right">
                             <div class="hidden md:block w-[45%]"></div>
@@ -602,13 +641,15 @@
                             <div class="w-full md:w-[45%] bg-slate-900 p-6 rounded-2xl border border-slate-800 shadow-xl">
                                 <span class="text-2xl font-black text-brand-400">2024.09</span>
                                 <h3 class="text-white font-bold text-lg mt-2">Main-Biz & ISO 9001:2015 획득</h3>
-                                <p class="text-slate-400 text-xs mt-1">경영혁신 중소기업(Main-Biz) 선정 및 품질경영시스템 글로벌 인증</p>
+                                <p class="text-slate-400 text-xs mt-1">경영혁신형 중소기업(Main-Biz) 선정 및 품질경영시스템 글로벌 인증</p>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
         </section>
+
         <!-- [브로슈어 모달 CTA] -->
         <section class="py-24 bg-gradient-to-r from-brand-900 via-slate-950 to-brand-950 border-t border-slate-800 relative overflow-hidden">
             <!-- Background Decoration Pattern -->
@@ -632,6 +673,7 @@
                 </button>
             </div>
         </section>
+
         <!-- [11대 펌프 제품 그리드] -->
         <section id="products" class="py-28 bg-slate-900 border-t border-slate-800">
             <div class="max-w-7xl mx-auto px-6">
@@ -646,6 +688,7 @@
                         전체 제조규격 열람 &rarr;
                     </button>
                 </div>
+
                 <!-- Products Grid -->
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <!-- Pump 1 -->
@@ -662,6 +705,7 @@
                             카탈로그 보기 <i class="fa-solid fa-arrow-right"></i>
                         </span>
                     </div>
+
                     <!-- Pump 2 -->
                     <div @click="openPdfModal('수중펌프_매뉴얼.pdf', '수중펌프 기술 카탈로그', 'catalog')" 
                          class="glow-card p-8 rounded-2xl cursor-pointer group flex flex-col justify-between h-72 fade-up" data-delay="150">
@@ -676,6 +720,7 @@
                             카탈로그 보기 <i class="fa-solid fa-arrow-right"></i>
                         </span>
                     </div>
+
                     <!-- Pump 3 -->
                     <div @click="openPdfModal('모노펌프_매뉴얼.pdf', '모노펌프 기술 카탈로그', 'catalog')" 
                          class="glow-card p-8 rounded-2xl cursor-pointer group flex flex-col justify-between h-72 fade-up" data-delay="200">
@@ -690,6 +735,7 @@
                             카탈로그 보기 <i class="fa-solid fa-arrow-right"></i>
                         </span>
                     </div>
+
                     <!-- Pump 4 -->
                     <div @click="openPdfModal('양흡입펌프_매뉴얼.pdf', '양흡입펌프 기술 카탈로그', 'catalog')" 
                          class="glow-card p-8 rounded-2xl cursor-pointer group flex flex-col justify-between h-72 fade-up" data-delay="250">
@@ -704,6 +750,7 @@
                             카탈로그 보기 <i class="fa-solid fa-arrow-right"></i>
                         </span>
                     </div>
+
                     <!-- Pump 5 -->
                     <div @click="openPdfModal('자흡식펌프_매뉴얼.pdf', '자흡식펌프 기술 카탈로그', 'catalog')" 
                          class="glow-card p-8 rounded-2xl cursor-pointer group flex flex-col justify-between h-72 fade-up" data-delay="300">
@@ -718,6 +765,7 @@
                             카탈로그 보기 <i class="fa-solid fa-arrow-right"></i>
                         </span>
                     </div>
+
                     <!-- Pump 6 -->
                     <div @click="openPdfModal('수중믹서_매뉴얼.pdf', '수중믹서 기술 카탈로그', 'catalog')" 
                          class="glow-card p-8 rounded-2xl cursor-pointer group flex flex-col justify-between h-72 fade-up" data-delay="350">
@@ -732,6 +780,7 @@
                             카탈로그 보기 <i class="fa-solid fa-arrow-right"></i>
                         </span>
                     </div>
+
                     <!-- Pump 7 -->
                     <div @click="openPdfModal('기어드펌프_매뉴얼.pdf', '기어드펌프 기술 카탈로그', 'catalog')" 
                          class="glow-card p-8 rounded-2xl cursor-pointer group flex flex-col justify-between h-72 fade-up" data-delay="400">
@@ -746,6 +795,7 @@
                             카탈로그 보기 <i class="fa-solid fa-arrow-right"></i>
                         </span>
                     </div>
+
                     <!-- Pump 8 -->
                     <div @click="openPdfModal('피스톤펌프_매뉴얼.pdf', '피스톤펌프 기술 카탈로그', 'catalog')" 
                          class="glow-card p-8 rounded-2xl cursor-pointer group flex flex-col justify-between h-72 fade-up" data-delay="450">
@@ -760,6 +810,7 @@
                             카탈로그 보기 <i class="fa-solid fa-arrow-right"></i>
                         </span>
                     </div>
+
                     <!-- Pump 9 -->
                     <div @click="openPdfModal('다이어프램펌프_매뉴얼.pdf', '다이어프램펌프 기술 카탈로그', 'catalog')" 
                          class="glow-card p-8 rounded-2xl cursor-pointer group flex flex-col justify-between h-72 fade-up" data-delay="500">
@@ -774,6 +825,7 @@
                             카탈로그 보기 <i class="fa-solid fa-arrow-right"></i>
                         </span>
                     </div>
+
                     <!-- Pump 10 -->
                     <div @click="openPdfModal('편흡입벌류트펌프_매뉴얼.pdf', '편흡입벌류트펌프 기술 카탈로그', 'catalog')" 
                          class="glow-card p-8 rounded-2xl cursor-pointer group flex flex-col justify-between h-72 fade-up" data-delay="550">
@@ -788,6 +840,7 @@
                             카탈로그 보기 <i class="fa-solid fa-arrow-right"></i>
                         </span>
                     </div>
+
                     <!-- Pump 11 -->
                     <div @click="openPdfModal('부스터펌프시스템_매뉴얼.pdf', '부스터펌프시스템 기술 카탈로그', 'catalog')" 
                          class="glow-card p-8 rounded-2xl cursor-pointer group flex flex-col justify-between h-72 fade-up" data-delay="600">
@@ -805,6 +858,7 @@
                 </div>
             </div>
         </section>
+
         <!-- [조달청 납품실적 표] -->
         <section class="py-24 bg-slate-950 border-t border-slate-900 relative">
             <div class="max-w-7xl mx-auto px-6">
@@ -814,6 +868,7 @@
                     <h2 class="text-2xl md:text-4xl font-bold text-white mt-4">조달청 및 관공서 주요 납품 실적</h2>
                     <p class="text-slate-400 text-sm mt-2">지자체 상하수설비 및 정수장 펌프 조달 구축 실적 현황</p>
                 </div>
+
                 <!-- Responsive Table Wrapper -->
                 <div class="overflow-x-auto rounded-2xl border border-slate-800 shadow-2xl fade-up" data-delay="100">
                     <table class="w-full text-left border-collapse min-w-[700px]">
@@ -855,6 +910,7 @@
                 </div>
             </div>
         </section>
+
         <!-- [보유 인증서 정렬] -->
         <section id="credentials" class="py-28 bg-slate-900 border-t border-slate-800">
             <div class="max-w-7xl mx-auto px-6">
@@ -866,6 +922,7 @@
                         <p class="text-slate-400 mt-2 text-sm md:text-base">공신력 있는 국가 공인 인증과 기술력 특허 증빙</p>
                     </div>
                 </div>
+
                 <!-- Acrylic Card Grid -->
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                     <!-- Cert 1 -->
@@ -877,6 +934,7 @@
                         <h3 class="text-white font-bold text-base group-hover:text-brand-400 transition-colors">사업/공장 등록</h3>
                         <p class="text-slate-400 text-xs mt-2">국가 정식 공장 제조 면허 및 춘천 퇴계농공단지 등록증</p>
                     </div>
+
                     <!-- Cert 2 -->
                     <div @click="openPdfModal('ji.pdf#page=15', '직접생산확인증명서', 'pdf')" 
                          class="relative bg-gradient-to-b from-slate-800/40 to-slate-900/40 border border-slate-700/50 hover:border-cyan-500 p-8 rounded-2xl cursor-pointer group text-center shadow-xl backdrop-blur-sm transition-all duration-300 hover:-translate-y-2 fade-up" data-delay="200">
@@ -886,6 +944,7 @@
                         <h3 class="text-white font-bold text-base group-hover:text-cyan-400 transition-colors">직접생산 확인증명</h3>
                         <p class="text-slate-400 text-xs mt-2">조달청 공공 입찰을 위한 모터펌프 11종 정식 제조확인서</p>
                     </div>
+
                     <!-- Cert 3 -->
                     <div @click="openPdfModal('ji.pdf#page=17', 'ISO 9001:2015', 'pdf')" 
                          class="relative bg-gradient-to-b from-slate-800/40 to-slate-900/40 border border-slate-700/50 hover:border-brand-500 p-8 rounded-2xl cursor-pointer group text-center shadow-xl backdrop-blur-sm transition-all duration-300 hover:-translate-y-2 fade-up" data-delay="300">
@@ -895,6 +954,7 @@
                         <h3 class="text-white font-bold text-base group-hover:text-brand-400 transition-colors">ISO 9001:2015</h3>
                         <p class="text-slate-400 text-xs mt-2">국제 표준화 기구에서 공인한 수처리 펌프 기계 설계/제조 품질인증</p>
                     </div>
+
                     <!-- Cert 4 -->
                     <div @click="openPdfModal('ji.pdf#page=19', 'Main-Biz 및 표창장', 'pdf')" 
                          class="relative bg-gradient-to-b from-slate-800/40 to-slate-900/40 border border-slate-700/50 hover:border-cyan-500 p-8 rounded-2xl cursor-pointer group text-center shadow-xl backdrop-blur-sm transition-all duration-300 hover:-translate-y-2 fade-up" data-delay="400">
@@ -907,6 +967,7 @@
                 </div>
             </div>
         </section>
+
         <!-- [지도 & 문의 양식] -->
         <section id="contact" class="py-24 bg-slate-950 border-t border-slate-900">
             <div class="max-w-7xl mx-auto px-6">
@@ -916,6 +977,7 @@
                     <h2 class="text-2xl md:text-4xl font-bold text-white mt-4">오시는 길 & 기술 문의</h2>
                     <p class="text-slate-400 text-sm mt-2">비에이텍(주) 퇴계 농공단지 공장 지도 및 1:1 담당자 문의 폼</p>
                 </div>
+
                 <!-- 50:50 Flexible Layout -->
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-stretch">
                     <!-- Left: Google Maps iframe -->
@@ -936,6 +998,7 @@
                             </p>
                         </div>
                     </div>
+
                     <!-- Right: Technical Inquiry Form -->
                     <div class="bg-slate-900 p-8 rounded-3xl border border-slate-850 shadow-2xl flex flex-col justify-between fade-up" data-delay="200">
                         <h3 class="text-lg font-bold text-white mb-6 flex items-center gap-2">
@@ -973,7 +1036,9 @@
                 </div>
             </div>
         </section>
+
     </main>
+
     <!-- INTRANET VIEW (Employee Only Mode) -->
     <main x-show="mode === 'intranet'" class="pt-28 min-h-screen bg-slate-950 pb-24" x-transition:enter="transition ease-out duration-500" x-transition:enter-start="opacity-0 translate-y-6" x-transition:enter-end="opacity-100 translate-y-0">
         <div class="max-w-7xl mx-auto px-6">
@@ -999,6 +1064,7 @@
                     <span x-text="currentTime || '2026.06.14 20:10:00'"></span>
                 </div>
             </div>
+
             <!-- Hub Cards (4 Cards Grid) -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
                 <!-- Card 1 -->
@@ -1034,6 +1100,7 @@
                     <p class="text-slate-400 text-xs mt-1">정비 매뉴얼 기반 실시간 고장 상황 진단 AI 비서 구동</p>
                 </div>
             </div>
+
             <!-- Lower Layout: (Tabs & Simulator) on Left [2/3] + Notice board on Right [1/3] -->
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 
@@ -1053,6 +1120,7 @@
                                 <i class="fa-solid fa-robot"></i> AI 기술 지원 지식베이스
                             </button>
                         </div>
+
                         <!-- Tab Content 1: Duty Roster Table -->
                         <div x-show="intranetTab === 'roster'" x-transition:enter="transition opacity duration-300" class="overflow-x-auto">
                             <table class="w-full text-left border-collapse min-w-[500px]">
@@ -1098,12 +1166,14 @@
                                 </tbody>
                             </table>
                         </div>
+
                         <!-- Tab Content 2: AI Knowledgebase Simulator -->
                         <div x-show="intranetTab === 'ai'" x-transition:enter="transition opacity duration-300" class="space-y-6">
                             <div class="bg-slate-950 p-6 rounded-2xl border border-slate-800 text-slate-300 text-xs leading-relaxed">
                                 <span class="text-rose-400 font-bold block mb-2"><i class="fa-solid fa-circle-info mr-1"></i> 현장 정비 AI 지식베이스 (NotebookLM 연동)</span>
                                 입찰 시방서, 설비 도면(PDF, HWP, CAD 텍스트 파일)을 아래 영역에 임포트하면 사내 AI 파서와 실시간 가압 기술 지식 모델을 트레이닝하여 맞춤형 유지보수 조치 스펙을 추출해냅니다.
                             </div>
+
                             <!-- Drag and Drop simulated box -->
                             <div @dragover.prevent="isDragOver = true" 
                                  @dragleave.prevent="isDragOver = false" 
@@ -1115,6 +1185,7 @@
                                 <span class="font-extrabold text-sm text-white mt-4">정비 지침서 파일 드래그앤드롭 또는 클릭</span>
                                 <span class="text-[10px] text-slate-500 mt-1">지원형식: PDF, HWP, HWPX, TXT (최대 100MB)</span>
                             </div>
+
                             <!-- Progress simulation bar -->
                             <div x-show="isIngesting" x-transition class="space-y-2">
                                 <div class="flex justify-between text-[10px] text-slate-400 font-bold uppercase">
@@ -1125,6 +1196,7 @@
                                     <div class="bg-gradient-to-r from-rose-500 to-cyan-400 h-full transition-all duration-300" :style="`width: ${uploadProgress}%`"></div>
                                 </div>
                             </div>
+
                             <!-- AI Output Logs Console -->
                             <div class="bg-black p-4 rounded-xl border border-slate-800 font-mono text-[10px] text-emerald-400 space-y-1 h-32 overflow-y-auto">
                                 <div class="text-slate-500">// AI 파서 트레이닝 로그 화면...</div>
@@ -1133,8 +1205,10 @@
                                 </template>
                             </div>
                         </div>
+
                     </div>
                 </div>
+
                 <!-- Right 1/3: Notice board -->
                 <div class="bg-slate-900 border border-slate-800 rounded-3xl p-8 shadow-2xl flex flex-col justify-between">
                     <div>
@@ -1173,8 +1247,10 @@
                     </button>
                 </div>
             </div>
+
         </div>
     </main>
+
     <!-- Footer -->
     <footer class="bg-slate-950 border-t border-slate-800 py-16">
         <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
@@ -1196,6 +1272,7 @@
             </div>
         </div>
     </footer>
+
     <!-- DOCUMENT LIGHTBOX MODAL (PDF / HWP / CATALOG MOCK VIEWER) -->
     <div x-show="pdfModalOpen" style="display: none;" class="fixed inset-0 z-[100] flex items-center justify-center">
         <!-- Backdrop -->
@@ -1216,6 +1293,7 @@
                     <i class="fa-solid fa-xmark text-lg"></i>
                 </button>
             </div>
+
             <!-- Viewer Area -->
             <div class="flex-grow bg-slate-950 flex items-center justify-center relative overflow-hidden">
                 <!-- Loading indicator -->
@@ -1223,6 +1301,7 @@
                     <i class="fa-solid fa-spinner text-4xl text-brand-500 animate-spin"></i>
                     <span class="text-xs">데이터 지식베이스 파싱 중...</span>
                 </div>
+
                 <!-- Simulation View for Local PDFs or Catalog Files -->
                 <div x-show="!docLoading" class="w-full h-full p-8 overflow-y-auto flex justify-center items-start">
                     <div class="bg-slate-900 border border-slate-800 p-10 rounded-2xl w-full max-w-4xl text-slate-300 shadow-2xl relative">
@@ -1235,6 +1314,7 @@
                                 <i class="fa-solid fa-download cursor-pointer hover:text-slate-300"></i>
                             </div>
                         </div>
+
                         <!-- Technical Blueprint / Graphic Simulation -->
                         <div class="w-full bg-slate-950 rounded-xl border border-slate-800 p-8 mb-8 text-center flex flex-col items-center justify-center border-dashed relative overflow-hidden group">
                             <!-- Blue laser-line glow effect -->
@@ -1245,6 +1325,7 @@
                             <h4 class="text-white font-extrabold text-base mb-2" x-text="modalTitle"></h4>
                             <p class="text-[11px] text-slate-400 max-w-md">11대 모터 가압 펌프 정밀 설계 표준 도안 및 유체 압력 제어 파라미터 규격 문서</p>
                         </div>
+
                         <!-- Technical Spec Table Simulation -->
                         <h4 class="text-white font-extrabold text-sm mb-4"><i class="fa-solid fa-list-check text-brand-400 mr-1"></i> 주요 설계 세부 규격 (Spec sheet)</h4>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs mb-8">
@@ -1255,12 +1336,14 @@
                             <div class="flex justify-between border-b border-slate-850 pb-2"><span class="text-slate-500">가압 제어 정밀도</span><span class="font-bold text-white">±0.05 bar 인버터 연동</span></div>
                             <div class="flex justify-between border-b border-slate-850 pb-2"><span class="text-slate-500">환경 표준 승인</span><span class="font-bold text-white">ISO 9001 / Main-Biz 직접생산</span></div>
                         </div>
+
                         <!-- Technical Description -->
                         <h4 class="text-white font-extrabold text-sm mb-4"><i class="fa-solid fa-circle-exclamation text-cyan-400 mr-1"></i> 안전 정비 가이드라인</h4>
                         <p class="text-xs text-slate-400 leading-relaxed mb-6">
                             본 설비는 강원특별자치도 상하수도 조달공급 표준 기구로서, 현장 설치 시 배관의 압력 편차와 임펠러 편심 가공 공차를 엄격히 검수해야 합니다. 
                             초기 가동 시 공기 빼기(자흡 상태) 밸브 상태를 모니터링하여 임펠러 소손을 미연에 방지하시고, 24시간 가압 이상 검출 모듈 시뮬레이션을 필히 선행하시기 바랍니다.
                         </p>
+
                         <!-- Actions footer inside mock viewer -->
                         <div class="flex justify-end gap-3 mt-4 border-t border-slate-800 pt-6">
                             <button @click="pdfModalOpen = false; pdfSrc = ''" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-white rounded-lg text-xs font-bold transition">
@@ -1276,6 +1359,7 @@
             </div>
         </div>
     </div>
+
     <!-- Intersection Observer Script for Smooth Animations -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -1287,6 +1371,7 @@
                 rootMargin: '0px',
                 threshold: 0.15
             };
+
             const observer = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -1299,7 +1384,9 @@
                     }
                 });
             }, observerOptions);
+
             fadeElements.forEach(el => observer.observe(el));
+
             // Observe timeline items
             const timelineItems = document.querySelectorAll('.timeline-item');
             const timelineObserver = new IntersectionObserver((entries, observer) => {
@@ -1314,8 +1401,11 @@
                 threshold: 0.2,
                 rootMargin: '0px'
             });
+
             timelineItems.forEach(item => timelineObserver.observe(item));
         });
     </script>
+
 </body>
 </html>
+```
