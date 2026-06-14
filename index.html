@@ -248,15 +248,15 @@
     <!-- PUBLIC PORTAL VIEW -->
     <main x-show="mode === 'public'" x-transition:enter="transition ease-out duration-500" x-transition:enter-start="opacity-0 translate-y-6" x-transition:enter-end="opacity-100 translate-y-0">
         
-        <!-- [Hero Section] -->
-        <section id="overview" class="relative pt-20 h-screen min-h-[650px] flex flex-col justify-between hero-bg overflow-hidden">
+        <!-- [Hero Section (Optimized to Prevent Card Clipping)] -->
+        <section id="overview" class="relative pt-32 min-h-screen flex flex-col justify-between hero-bg overflow-hidden">
             <div class="absolute inset-0 bg-slate-950/20 pointer-events-none"></div>
             
             <!-- Grid Lines Decoration -->
             <div class="absolute inset-0 bg-[radial-gradient(rgba(14,165,233,0.15)_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none opacity-60"></div>
             
             <!-- Hero Content -->
-            <div class="max-w-7xl mx-auto px-6 relative z-10 w-full flex-grow flex items-center">
+            <div class="max-w-7xl mx-auto px-6 relative z-10 w-full flex-grow flex items-center py-12">
                 <div class="max-w-4xl fade-up" data-delay="100">
                     <span class="inline-flex items-center gap-2 py-1.5 px-4 rounded-full bg-brand-500/10 text-brand-400 font-bold text-xs uppercase tracking-wider mb-6 border border-brand-500/30">
                         <i class="fa-solid fa-water-ladder text-[10px] animate-pulse"></i> Blue Advanced Technology
@@ -286,12 +286,12 @@
                 </div>
             </div>
 
-            <!-- Bottom core capabilities (3 cards) -->
-            <div class="w-full bg-slate-950/60 backdrop-blur-md border-t border-slate-800 py-8 relative z-20">
+            <!-- Bottom core capabilities (Optimized layout to prevent cutting off) -->
+            <div class="w-full bg-slate-950/85 backdrop-blur-md border-t border-slate-800 py-10 relative z-20 mt-auto">
                 <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-6">
                     <!-- Card 1 -->
                     <div class="glow-card p-6 rounded-2xl flex items-center gap-4">
-                        <div class="w-12 h-12 bg-brand-500/10 rounded-xl flex items-center justify-center text-brand-400 text-xl border border-brand-500/20">
+                        <div class="w-12 h-12 bg-brand-500/10 rounded-xl flex items-center justify-center text-brand-400 text-xl border border-brand-500/20 flex-shrink-0">
                             <i class="fa-solid fa-drafting-compass"></i>
                         </div>
                         <div>
@@ -301,7 +301,7 @@
                     </div>
                     <!-- Card 2 -->
                     <div class="glow-card p-6 rounded-2xl flex items-center gap-4">
-                       <div class="w-12 h-12 bg-cyan-500/10 rounded-xl flex items-center justify-center text-cyan-400 text-xl border border-cyan-500/20">
+                       <div class="w-12 h-12 bg-cyan-500/10 rounded-xl flex items-center justify-center text-cyan-400 text-xl border border-cyan-500/20 flex-shrink-0">
                             <i class="fa-solid fa-trowel-bricks"></i>
                         </div>
                         <div>
@@ -311,7 +311,7 @@
                     </div>
                     <!-- Card 3 -->
                     <div class="glow-card p-6 rounded-2xl flex items-center gap-4">
-                        <div class="w-12 h-12 bg-indigo-500/10 rounded-xl flex items-center justify-center text-indigo-400 text-xl border border-indigo-500/20">
+                        <div class="w-12 h-12 bg-indigo-500/10 rounded-xl flex items-center justify-center text-indigo-400 text-xl border border-indigo-500/20 flex-shrink-0">
                             <i class="fa-solid fa-screwdriver-wrench"></i>
                         </div>
                         <div>
@@ -443,7 +443,7 @@
             </div>
         </section>
 
-        <!-- [홍보 영상 (Cleaned View)] -->
+        <!-- [홍보 영상 (Cleaned View - No Demo Overlay)] -->
         <section id="media" class="py-24 bg-slate-950 border-t border-slate-900 relative">
             <div class="max-w-7xl mx-auto px-6 flex flex-col items-center">
                 <div class="text-center mb-12 fade-up">
@@ -452,7 +452,7 @@
                     <p class="text-slate-400 text-sm mt-2">정밀 기계공학과 스마트 솔루션이 만난 최신 수처리 가압 조치 공정</p>
                 </div>
                 
-                <!-- TV Screen Wrap (No Overlay / Clean Playback) -->
+                <!-- TV Screen Wrap (No Dark Overlay, Clean and Direct Playback) -->
                 <div class="w-full max-w-4xl rounded-2xl overflow-hidden tv-screen fade-up" data-delay="100">
                     <div class="aspect-video w-full bg-slate-900 relative">
                         <video src="/batechppl.mp4" controls autoplay loop muted playsinline class="w-full h-full object-cover z-10 relative"></video>
@@ -461,66 +461,73 @@
             </div>
         </section>
 
-        <!-- [워터펌프 핵심 관리 비법 & 비에이텍 기술력 캠페인] -->
+        <!-- [펌프 수명 2배 늘리는 확실한 관리 체크리스트 (1:1 Ratio Guaranteed)] -->
         <section id="campaign" class="py-28 bg-slate-900 border-t border-slate-800">
             <div class="max-w-7xl mx-auto px-6">
                 <!-- Section Header -->
                 <div class="text-center mb-16 fade-up">
-                    <span class="text-xs uppercase font-extrabold tracking-widest text-cyan-400 bg-cyan-500/10 px-3 py-1 rounded-md">Pump Management & Tech</span>
+                    <span class="text-xs uppercase font-extrabold tracking-widest text-cyan-400 bg-cyan-500/10 px-3 py-1 rounded-md">Batech Campaign</span>
                     <h2 class="text-3xl md:text-5xl font-black text-white mt-4 tracking-tight">펌프 수명 2배 늘리는 확실한 관리 체크리스트</h2>
-                    <p class="text-slate-400 mt-2 text-sm md:text-base">비에이텍(주)이 전하는 워터펌프 핵심 관리법과 신뢰할 수 있는 특화 기술력</p>
+                    <p class="text-slate-400 mt-2 text-sm md:text-base">설비 전문가 비에이텍(주)이 전수하는 고성능 워터펌프 상시 진단 요령</p>
                 </div>
 
-                <!-- Card Grid representing the 4 image slides -->
+                <!-- Card Grid with Exact 1:1 Aspect Square Layout -->
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <!-- Post 1 (Slide 1) -->
-                    <div class="relative overflow-hidden rounded-2xl aspect-[3/4] group border border-slate-800 shadow-xl fade-up" data-delay="100">
-                        <img src="/1.jpg" alt="소음 진동 확인 및 소모품 교체" onerror="this.src='https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=600&q=80'" class="absolute inset-0 w-full h-full object-cover transform transition duration-700 group-hover:scale-110">
-                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent"></div>
-                        <div class="absolute bottom-0 left-0 right-0 p-6 text-white flex flex-col justify-end">
-                            <span class="text-[10px] text-brand-400 font-bold uppercase tracking-wider mb-2">01. 관리 비법</span>
-                            <h3 class="text-xl font-bold">주기적 소음·진동 & 소모품 교체</h3>
-                            <p class="text-slate-300 text-xs mt-2 leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                가동 시 평소와 다른 이음이나 심한 진동이 발생하면 베어링 마모나 축의 불균형을 의심해야 합니다. 주기적인 윤활유 주입과 패킹, 메카니컬 씰을 제때 교체하여 고장을 방지하고 수명을 증대시킵니다.
+                    
+                    <!-- Card 1 (01. 관리비법) -->
+                    <div class="relative overflow-hidden rounded-2xl aspect-square group border border-slate-800 shadow-xl fade-up" data-delay="100">
+                        <img src="/1.jpg" alt="관리비법" onerror="this.src='https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=600&q=80'" class="absolute inset-0 w-full h-full object-cover transform transition duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/50 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-6 text-white flex flex-col justify-end min-h-[50%]">
+                            <span class="text-[10px] text-brand-400 font-extrabold uppercase tracking-widest mb-1">01. 관리비법</span>
+                            <h3 class="text-lg font-bold leading-snug">비에이텍이 알려주는 워터펌프 핵심 관리법</h3>
+                            <!-- Hover Interactive Tooltip Description -->
+                            <p class="text-slate-300 text-xs mt-3 leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-slate-950/80 backdrop-blur-sm p-3 rounded-lg border border-slate-800">
+                                산업 현장부터 아파트 단지까지, 우리 삶의 필수 설비인 워터펌프! 고장 없이 오래, 효율적으로 사용하려면 꾸준한 점검이 필수입니다. 오늘은 펌프 제조·설치·수리 전문 기업 비에이텍(주)과 함께 올바른 펌프 관리 비법을 알아볼까요?
                             </p>
                         </div>
                     </div>
-                    <!-- Post 2 (Slide 2) -->
-                    <div class="relative overflow-hidden rounded-2xl aspect-[3/4] group border border-slate-800 shadow-xl fade-up" data-delay="200">
-                        <img src="/2.jpg" alt="비에이텍의 우수한 제조 품질" onerror="this.src='https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=600&q=80'" class="absolute inset-0 w-full h-full object-cover transform transition duration-700 group-hover:scale-110">
-                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent"></div>
-                        <div class="absolute bottom-0 left-0 right-0 p-6 text-white flex flex-col justify-end">
-                            <span class="text-[10px] text-cyan-400 font-bold uppercase tracking-wider mb-2">02. 핵심 기술력</span>
-                            <h3 class="text-xl font-bold">튼튼한 펌프, 품질의 자부심</h3>
-                            <p class="text-slate-300 text-xs mt-2 leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                비에이텍은 ISO 9001 품질경영 인증을 바탕으로 다단벌류트 펌프 및 부스터 펌프를 엄격하게 제조합니다. 생산 단계부터 꼼꼼한 품질 테스트를 거쳐 잔고장이 적고 유지보수가 용이합니다.
+
+                    <!-- Card 2 (02. 소모품 교체) -->
+                    <div class="relative overflow-hidden rounded-2xl aspect-square group border border-slate-800 shadow-xl fade-up" data-delay="200">
+                        <img src="/2.jpg" alt="소모품 교체" onerror="this.src='https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=600&q=80'" class="absolute inset-0 w-full h-full object-cover transform transition duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/50 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-6 text-white flex flex-col justify-end min-h-[50%]">
+                            <span class="text-[10px] text-cyan-400 font-extrabold uppercase tracking-widest mb-1">02. 소모품 교체</span>
+                            <h3 class="text-lg font-bold leading-snug text-cyan-100">튼튼한 펌프, 품질의 자부심</h3>
+                            <p class="text-slate-300 text-xs mt-2 leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-slate-950/80 backdrop-blur-sm p-3 rounded-lg border border-slate-800">
+                                정기적인 윤활유 주입과 패킹, 메카니컬 씰 등 소모품만 제때 교체해도 갑작스러운 큰 고장을 막고 수명을 크게 늘릴 수 있습니다.
                             </p>
                         </div>
                     </div>
-                    <!-- Post 3 (Slide 3) -->
-                    <div class="relative overflow-hidden rounded-2xl aspect-[3/4] group border border-slate-800 shadow-xl fade-up" data-delay="300">
-                        <img src="/3.jpg" alt="동파 방지 및 설치 환경 관리" onerror="this.src='https://images.unsplash.com/photo-1542013936693-8848e5740a7a?auto=format&fit=crop&w=600&q=80'" class="absolute inset-0 w-full h-full object-cover transform transition duration-700 group-hover:scale-110">
-                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent"></div>
-                        <div class="absolute bottom-0 left-0 right-0 p-6 text-white flex flex-col justify-end">
-                            <span class="text-[10px] text-indigo-400 font-bold uppercase tracking-wider mb-2">03. 관리 비법</span>
-                            <h3 class="text-xl font-bold">동파 방지 및 설치 환경 관리</h3>
-                            <p class="text-slate-300 text-xs mt-2 leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                겨울철에는 물이 얼어 케이싱(외관)이 파손될 위험이 있습니다. 보온재로 배관을 감싸고, 장기 미사용 시 물을 완전히 빼주어야 합니다. 통풍이 잘 되고 침수 우려가 없는 곳에 설치해 모터를 보호하세요.
+
+                    <!-- Card 3 (03. 관리 비법 - High Contrast Version) -->
+                    <div class="relative overflow-hidden rounded-2xl aspect-square group border border-slate-800 shadow-xl fade-up" data-delay="300">
+                        <img src="/3.jpg" alt="동파방지 및 환경관리" onerror="this.src='https://images.unsplash.com/photo-1542013936693-8848e5740a7a?auto=format&fit=crop&w=600&q=80'" class="absolute inset-0 w-full h-full object-cover transform transition duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/60 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-6 text-white flex flex-col justify-end min-h-[50%]">
+                            <span class="text-[10px] text-emerald-400 font-extrabold uppercase tracking-widest mb-1 bg-slate-950/80 backdrop-blur-sm px-2 py-0.5 rounded-md w-max border border-emerald-500/20">03. 관리 비법</span>
+                            <h3 class="text-lg font-bold leading-snug mt-1.5 text-emerald-300 bg-slate-950/90 backdrop-blur-sm px-3 py-1.5 rounded-lg border border-slate-800">동파 방지 및 설치 환경(습도·온도) 관리</h3>
+                            <p class="text-slate-100 text-xs mt-2 leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-slate-950/95 backdrop-blur-md p-4 rounded-xl border-2 border-emerald-500/40 shadow-2xl">
+                                <span class="text-emerald-400 font-extrabold">겨울철에는 펌프 내부의 물이 얼어 케이싱(외관)이 파손될 위험이 있습니다!</span><br><br>
+                                보온재로 배관을 감싸고, 장기간 사용하지 않을 때는 펌프 안의 물을 완전히 빼두어야 합니다. 또한 통풍이 잘되고 침수 우려가 없는 곳에 설치해야 모터 고장을 예방할 수 있습니다.
                             </p>
                         </div>
                     </div>
-                    <!-- Post 4 (Slide 4) -->
-                    <div class="relative overflow-hidden rounded-2xl aspect-[3/4] group border border-slate-800 shadow-xl fade-up" data-delay="400">
+
+                    <!-- Card 4 (04. 사후 관리) -->
+                    <div class="relative overflow-hidden rounded-2xl aspect-square group border border-slate-800 shadow-xl fade-up" data-delay="400">
                         <img src="/4.jpg" alt="비에이텍 밀착 책임 사후관리" onerror="this.src='https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=600&q=80'" class="absolute inset-0 w-full h-full object-cover transform transition duration-700 group-hover:scale-110">
-                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent"></div>
-                        <div class="absolute bottom-0 left-0 right-0 p-6 text-white flex flex-col justify-end">
-                            <span class="text-[10px] text-emerald-400 font-bold uppercase tracking-wider mb-2">04. 사후 관리</span>
-                            <h3 class="text-xl font-bold">설치부터 완벽한 A/S 전담</h3>
-                            <p class="text-slate-300 text-xs mt-2 leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/50 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-6 text-white flex flex-col justify-end min-h-[50%]">
+                            <span class="text-[10px] text-indigo-400 font-bold uppercase tracking-wider mb-2">04. 사후 관리</span>
+                            <h3 class="text-lg font-bold leading-snug text-indigo-100">설치부터 완벽한 A/S 전담</h3>
+                            <p class="text-slate-300 text-xs mt-2 leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-slate-950/80 backdrop-blur-sm p-3 rounded-lg border border-slate-800">
                                 춘천, 철원, 홍천 등 강원도 주요 관공서와 상하수도 시설이 선택한 강력한 내구성! 문제 발생 시 숙련된 엔지니어가 신속하고 정확하게 현장 진단 및 수리 역량을 제공합니다.
                             </p>
                         </div>
                     </div>
+
                 </div>
             </div>
         </section>
@@ -1119,7 +1126,7 @@
                                         <td class="py-4 px-2">춘천 소양정수장</td>
                                         <td class="py-4 px-2">다단 펌프 가스켓 누수 긴급 패킹 교환</td>
                                         <td class="py-4 px-2 text-right">
-                                            <span class="inline-flex items-center gap-1 5 px-2.5 py-1 rounded-full text-[10px] font-semibold bg-yellow-500/10 text-yellow-500 border border-yellow-500/20">
+                                            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-semibold bg-yellow-500/10 text-yellow-500 border border-yellow-500/20">
                                                 <span class="w-1.5 h-1.5 rounded-full bg-yellow-500 animate-pulse"></span> 처리진행
                                             </span>
                                         </td>
@@ -1129,7 +1136,7 @@
                                         <td class="py-4 px-2">홍천 용수 가압장</td>
                                         <td class="py-4 px-2">송수관로 300A 밸브 수압 테스트 완료</td>
                                         <td class="py-4 px-2 text-right">
-                                            <span class="inline-flex items-center gap-1 5 px-2.5 py-1 rounded-full text-[10px] font-semibold bg-emerald-500/10 text-emerald-500 border border-emerald-500/20">
+                                            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-semibold bg-emerald-500/10 text-emerald-500 border border-emerald-500/20">
                                                 <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> 조치완료
                                             </span>
                                         </td>
@@ -1139,7 +1146,7 @@
                                         <td class="py-4 px-2">퇴계공단 생산본부</td>
                                         <td class="py-4 px-2">출하 전 부스터 펌프 인버터 제어반 최종 검수</td>
                                         <td class="py-4 px-2 text-right">
-                                            <span class="inline-flex items-center gap-1 5 px-2.5 py-1 rounded-full text-[10px] font-semibold bg-slate-800 text-slate-400 border border-slate-700">
+                                            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-semibold bg-slate-800 text-slate-400 border border-slate-700">
                                                 출동예정
                                             </span>
                                         </td>
