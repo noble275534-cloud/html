@@ -44,4 +44,1278 @@
         ::-webkit-scrollbar-thumb:hover { background: #0ea5e9; }
         /* Hero Background with High-Tech overlay */
         .hero-bg {
-            background-image: linear-
+            background-image: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 30%, rgba(6, 182, 212, 0.45) 80%, rgba(15, 23, 42, 0.9) 100%), 
+                              url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=2000&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        /* Glassmorphism Navigation */
+        .nav-link { position: relative; display: inline-block; padding-bottom: 0.25rem; }
+        .nav-link::after {
+            content: ''; position: absolute; width: 0; height: 2px; bottom: 0; left: 0;
+            background-color: #0ea5e9; transition: width 0.3s ease;
+        }
+        .nav-link:hover::after { width: 100%; }
+        /* Glow border animation effects */
+        .glow-card {
+            position: relative;
+            background: rgba(15, 23, 42, 0.65);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(14, 165, 233, 0.2);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glow-card::before {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            border-radius: inherit;
+            background: linear-gradient(135deg, #0ea5e9, transparent, #06b6d4);
+            z-index: -1;
+            opacity: 0.15;
+            transition: opacity 0.4s ease;
+        }
+        .glow-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(6, 182, 212, 0.8);
+            box-shadow: 0 10px 30px -10px rgba(6, 182, 212, 0.4), 0 0 15px 1px rgba(14, 165, 233, 0.2);
+        }
+        .glow-card:hover::before {
+            opacity: 0.6;
+        }
+        /* Intersection Observer Animation Classes */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: transform, opacity;
+        }
+        .fade-up.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* Timeline motion styles */
+        .timeline-item {
+            opacity: 0;
+            transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .timeline-item-left { transform: translateX(-50px); }
+        .timeline-item-right { transform: translateX(50px); }
+        .timeline-item.show {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        /* Premium TV Frame Effect */
+        .tv-screen {
+            position: relative;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7),
+                        inset 0 0 40px rgba(0, 0, 0, 0.8),
+                        0 0 0 12px #1e293b, /* Frame */
+                        0 0 0 14px #334155, /* Outer bevel */
+                        0 0 30px rgba(14, 165, 233, 0.15); /* Light glow */
+        }
+        .tv-screen::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(rgba(255,255,255,0.03) 50%, rgba(0,0,0,0.08) 50%);
+            background-size: 100% 4px;
+            pointer-events: none;
+            z-index: 5;
+        }
+        /* Org chart connecting lines */
+        .org-line-v { width: 2px; background-color: #0ea5e9; }
+        .org-line-h { height: 2px; background-color: #0ea5e9; }
+        /* Simulated progress bar */
+        @keyframes progress-pulse {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+        .animate-progress {
+            animation: progress-pulse 1.5s infinite ease-in-out;
+        }
+    </style>
+</head>
+<body class="font-sans text-slate-800 bg-slate-900 transition-colors duration-500"
+      x-data="{ 
+          mode: 'public', // 'public' or 'intranet'
+          pdfModalOpen: false,
+          pdfSrc: '',
+          modalTitle: '',
+          docType: 'pdf', // 'pdf', 'hwp', 'catalog'
+          docLoading: false,
+          currentTime: '',
+          intranetTab: 'roster', // 'roster' or 'ai'
+          
+          // AI Simulator States
+          uploadProgress: 0,
+          aiLogs: [],
+          isIngesting: false,
+          isDragOver: false,
+          openPdfModal(url, title, type = 'pdf') {
+              this.modalTitle = title;
+              this.docType = type;
+              this.docLoading = true;
+              this.pdfModalOpen = true;
+              
+              // Simulate loading delay for premium feel
+              setTimeout(() => {
+                  this.pdfSrc = url;
+                  this.docLoading = false;
+              }, 600);
+          },
+          triggerDemoUpload() {
+              if (this.isIngesting) return;
+              this.isIngesting = true;
+              this.uploadProgress = 0;
+              this.aiLogs = ['[SYSTEM] 정비 매뉴얼 파싱을 준비합니다...'];
+              // Step transitions
+              let timer1 = setTimeout(() => {
+                  this.uploadProgress = 35;
+                  this.aiLogs.push('🔍 [PARSING] 정비 매뉴얼 분석 및 데이터 파싱 시작...');
+              }, 800);
+              let timer2 = setTimeout(() => {
+                  this.uploadProgress = 70;
+                  this.aiLogs.push('🧠 [TRAINING] 유체공학 기술 지식베이스 기계학습 모델 트레이닝 중...');
+              }, 1800);
+              let timer3 = setTimeout(() => {
+                  this.uploadProgress = 100;
+                  this.aiLogs.push('⚡ [INTEGRATION] AI 가압 기술 및 밸브 진단 모듈 연동 완료!');
+                  this.aiLogs.push('✅ [SUCCESS] NotebookLM 하이브리드 엔진 동작 상태: 정상 (온라인)');
+              }, 2900);
+              let timer4 = setTimeout(() => {
+                  this.isIngesting = false;
+              }, 4000);
+          },
+          submitForm(e) {
+              alert('성공적으로 기술 문의가 비에이텍 담당자에게 전달되었습니다.');
+              e.target.reset();
+          }
+      }">
+    <!-- Header / Navigation -->
+    <header class="fixed top-0 w-full bg-slate-950/90 backdrop-blur-md border-b border-slate-800 z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+            <!-- Logo -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 bg-brand-500 rounded-xl flex items-center justify-center text-white font-extrabold text-2xl group-hover:bg-brand-400 group-hover:rotate-6 transition-all shadow-md shadow-brand-500/25">
+                    B
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-xl font-bold text-white tracking-tight leading-none">비에이텍<span class="text-brand-500 font-extrabold">(주)</span></span>
+                    <span class="text-[9px] text-slate-400 uppercase tracking-widest mt-1">Blue Advanced Technology</span>
+                </div>
+            </a>
+            
+            <!-- Navigation Menu (Only shown in Public Mode) -->
+            <nav class="hidden lg:flex items-center gap-8 text-sm font-semibold text-slate-300" x-show="mode === 'public'">
+                <div class="flex items-center gap-6">
+                    <span class="text-[10px] uppercase tracking-widest text-brand-500 font-bold bg-brand-500/10 px-2 py-0.5 rounded">Menu</span>
+                    <a href="#overview" class="nav-link hover:text-brand-400 transition">개요</a>
+                    <a href="#about" class="nav-link hover:text-brand-400 transition">기업소개</a>
+                    <a href="#history" class="nav-link hover:text-brand-400 transition">연혁</a>
+                    <a href="#products" class="nav-link hover:text-brand-400 transition">펌프라인업</a>
+                    <a href="#credentials" class="nav-link hover:text-brand-400 transition">인증서</a>
+                    <a href="#media" class="nav-link hover:text-brand-400 transition">미디어허브</a>
+                    <a href="#contact" class="nav-link hover:text-brand-400 transition">고객지원</a>
+                </div>
+            </nav>
+            <!-- Navigation Mode Switcher -->
+            <div class="flex items-center gap-3 bg-slate-900 border border-slate-800 p-1.5 rounded-full shadow-inner">
+                <span class="text-xs font-semibold px-2 transition-colors duration-200" :class="mode === 'public' ? 'text-brand-400 font-bold' : 'text-slate-500'">
+                    방문자
+                </span>
+                <button @click="mode = mode === 'public' ? 'intranet' : 'public'; window.scrollTo({top: 0, behavior: 'smooth'});" 
+                        class="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-300 ease-in-out focus:outline-none"
+                        :class="mode === 'intranet' ? 'bg-rose-500' : 'bg-brand-500'"
+                        aria-label="Toggle Mode">
+                    <span class="pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow-md ring-0 transition duration-300 ease-in-out"
+                          :class="mode === 'intranet' ? 'translate-x-5' : 'translate-x-0'"></span>
+                </button>
+                <span class="text-xs font-semibold px-2 transition-colors duration-200" :class="mode === 'intranet' ? 'text-rose-400 font-bold' : 'text-slate-500'">
+                    임직원
+                </span>
+            </div>
+        </div>
+    </header>
+    <!-- PUBLIC PORTAL VIEW -->
+    <main x-show="mode === 'public'" x-transition:enter="transition ease-out duration-500" x-transition:enter-start="opacity-0 translate-y-6" x-transition:enter-end="opacity-100 translate-y-0">
+        
+        <!-- [Hero Section] -->
+        <section id="overview" class="relative pt-20 h-screen min-h-[650px] flex flex-col justify-between hero-bg overflow-hidden">
+            <div class="absolute inset-0 bg-slate-950/20 pointer-events-none"></div>
+            
+            <!-- Grid Lines Decoration -->
+            <div class="absolute inset-0 bg-[radial-gradient(rgba(14,165,233,0.15)_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none opacity-60"></div>
+            
+            <!-- Hero Content -->
+            <div class="max-w-7xl mx-auto px-6 relative z-10 w-full flex-grow flex items-center">
+                <div class="max-w-4xl fade-up" data-delay="100">
+                    <span class="inline-flex items-center gap-2 py-1.5 px-4 rounded-full bg-brand-500/10 text-brand-400 font-bold text-xs uppercase tracking-wider mb-6 border border-brand-500/30">
+                        <i class="fa-solid fa-water-ladder text-[10px] animate-pulse"></i> Blue Advanced Technology
+                    </span>
+                    <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold text-white leading-tight mb-6 tracking-tight">
+                        Pure, Smart & Powerful Water<br>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-400 to-cyan-400 font-black">
+                            차세대 지능형 물 기술의 미래
+                        </span><br>
+                        <span class="text-2xl md:text-3xl font-light text-slate-300">를 열어가는 기업, 비에이텍(주)</span>
+                    </h1>
+                    <p class="text-base md:text-lg text-slate-300 font-light mb-8 max-w-2xl leading-relaxed">
+                        강원특별자치도 상하수도 설비 및 관공서 납품 모터펌프 제조·시공 전문 리더.<br>
+                        14년의 검증된 현장 신뢰와 정밀 엔지니어링으로 수자원 인프라의 안정을 설계합니다.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <button @click="openPdfModal('ji.pdf', '비에이텍 전체 지명원', 'catalog')" 
+                                class="bg-brand-500 hover:bg-brand-400 text-slate-950 font-extrabold py-4 px-8 rounded-xl shadow-lg shadow-brand-500/25 transition transform hover:-translate-y-1 flex items-center gap-2 text-sm tracking-wide">
+                            <i class="fa-solid fa-file-pdf text-lg"></i>
+                            전체 지명원 다운로드
+                        </button>
+                        <a href="#about" class="bg-slate-900/80 border border-slate-700 hover:border-brand-500 text-white font-medium py-4 px-8 rounded-xl transition flex items-center gap-2 text-sm backdrop-blur-sm">
+                            자세히 알아보기
+                            <i class="fa-solid fa-arrow-down text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- Bottom core capabilities (3 cards) -->
+            <div class="w-full bg-slate-950/60 backdrop-blur-md border-t border-slate-800 py-8 relative z-20">
+                <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Card 1 -->
+                    <div class="glow-card p-6 rounded-2xl flex items-center gap-4">
+                        <div class="w-12 h-12 bg-brand-500/10 rounded-xl flex items-center justify-center text-brand-400 text-xl border border-brand-500/20">
+                            <i class="fa-solid fa-drafting-compass"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-white font-bold text-base">정밀 설계 & 제조</h3>
+                            <p class="text-slate-400 text-xs mt-1">유체 역학 시뮬레이션 기반의 11종 펌프 고정밀 가공</p>
+                        </div>
+                    </div>
+                    <!-- Card 2 -->
+                    <div class="glow-card p-6 rounded-2xl flex items-center gap-4">
+                        <div class="w-12 h-12 bg-cyan-500/10 rounded-xl flex items-center justify-center text-cyan-400 text-xl border border-cyan-500/20">
+                            <i class="fa-solid fa-trowel-bricks"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-white font-bold text-base">완벽한 현장 시공</h3>
+                            <p class="text-slate-400 text-xs mt-1">지자체 대형 배수지 및 하수처리공정 전문 가동 가압 시공</p>
+                        </div>
+                    </div>
+                    <!-- Card 3 -->
+                    <div class="glow-card p-6 rounded-2xl flex items-center gap-4">
+                        <div class="w-12 h-12 bg-indigo-500/10 rounded-xl flex items-center justify-center text-indigo-400 text-xl border border-indigo-500/20">
+                            <i class="fa-solid fa-screwdriver-wrench"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-white font-bold text-base">실시간 사후 유지보수</h3>
+                            <p class="text-slate-400 text-xs mt-1">24시간 신속 가동 대응 및 AI 지식베이스 연계 솔루션</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- [기업 소개 & 조직도] -->
+        <section id="about" class="py-28 bg-slate-900 border-t border-slate-800 relative">
+            <div class="max-w-7xl mx-auto px-6">
+                <!-- Section Header -->
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 border-b border-slate-800 pb-8 fade-up">
+                    <div>
+                        <span class="text-xs uppercase font-extrabold tracking-widest text-brand-500 bg-brand-500/10 px-3 py-1 rounded-md">Company Profile</span>
+                        <h2 class="text-3xl md:text-5xl font-black text-white mt-4 tracking-tight">기업소개 & 조직도</h2>
+                        <p class="text-slate-400 mt-2 text-sm md:text-base">비에이텍(주)의 가치 지표와 체계화된 전문 조직 구성</p>
+                    </div>
+                    <button @click="openPdfModal('ji.pdf#page=4', '회사 개요 (4p)', 'pdf')" class="text-xs font-bold text-brand-400 hover:text-brand-300 flex items-center gap-1 mt-4 md:mt-0 bg-brand-500/10 border border-brand-500/20 px-4 py-2 rounded-lg transition">
+                        상세 문서로 보기 &rarr;
+                    </button>
+                </div>
+                
+                <!-- 1:1 Two Column layout -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-stretch">
+                    
+                    <!-- Left: Corporate Info List -->
+                    <div class="bg-slate-950 p-8 rounded-3xl border border-slate-800 flex flex-col justify-between fade-up" data-delay="100">
+                        <div>
+                            <h3 class="text-lg font-bold text-white mb-6 flex items-center gap-2">
+                                <i class="fa-solid fa-building-user text-brand-500"></i> Corporate Overview
+                            </h3>
+                            <div class="space-y-4">
+                                <div class="flex items-center justify-between border-b border-slate-800/80 pb-3">
+                                    <span class="text-slate-400 text-sm">회사명</span>
+                                    <span class="text-white font-semibold text-sm">비에이텍(주)</span>
+                                </div>
+                                <div class="flex items-center justify-between border-b border-slate-800/80 pb-3">
+                                    <span class="text-slate-400 text-sm">대표이사</span>
+                                    <span class="text-white font-semibold text-sm">조세연</span>
+                                </div>
+                                <div class="flex items-center justify-between border-b border-slate-800/80 pb-3">
+                                    <span class="text-slate-400 text-sm">설립일</span>
+                                    <span class="text-white font-semibold text-sm">2010년 11월 12일</span>
+                                </div>
+                                <div class="flex items-center justify-between border-b border-slate-800/80 pb-3">
+                                    <span class="text-slate-400 text-sm">사업자등록번호</span>
+                                    <span class="text-white font-semibold text-sm">221-81-42625</span>
+                                </div>
+                                <div class="flex items-center justify-between border-b border-slate-800/80 pb-3">
+                                    <span class="text-slate-400 text-sm">주요 사업분야</span>
+                                    <span class="text-white font-semibold text-sm">산업용 모터펌프 제조, 설비배관공사, 자재유통</span>
+                                </div>
+                                <div class="flex items-center justify-between border-b border-slate-800/80 pb-3">
+                                    <span class="text-slate-400 text-sm">본사 & 공장 면적</span>
+                                    <span class="text-white font-semibold text-sm">부지 2,450㎡ / 공장 생산동 1,200㎡</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-8 pt-6 border-t border-slate-800/80 flex items-center gap-4 text-xs text-slate-400 bg-slate-900/40 p-4 rounded-xl">
+                            <i class="fa-solid fa-map-location-dot text-brand-500 text-lg"></i>
+                            <div>
+                                <span class="font-bold text-slate-300 block">공장 소재지</span>
+                                강원특별자치도 춘천시 퇴계공단2길 64 (퇴계제2농공단지)
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Right: Organizational Chart Tree -->
+                    <div class="bg-slate-950 p-8 rounded-3xl border border-slate-800 flex flex-col justify-center items-center overflow-hidden fade-up" data-delay="200">
+                        <h3 class="text-lg font-bold text-white mb-8 self-start flex items-center gap-2">
+                            <i class="fa-solid fa-sitemap text-cyan-400"></i> 사내 조직도 (Organizational Structure)
+                        </h3>
+                        
+                        <!-- Tree Nodes -->
+                        <div class="flex flex-col items-center w-full">
+                            <!-- CEO Level -->
+                            <div class="relative pb-8 flex justify-center w-full">
+                                <div class="relative z-10 bg-gradient-to-r from-brand-800 to-brand-900 text-white px-8 py-3 rounded-2xl shadow-xl border border-brand-500/40 text-center font-bold text-sm tracking-wide">
+                                    대표이사
+                                    <span class="block text-xs font-normal text-brand-300 mt-1">조세연</span>
+                                </div>
+                                <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[2px] h-8 bg-brand-500"></div>
+                            </div>
+                            <!-- Horizontal Connector Line -->
+                            <div class="relative w-11/12 flex justify-between items-start">
+                                <div class="absolute top-0 left-0 right-0 h-[2px] bg-brand-500"></div>
+                                
+                                <!-- Columns of Departments -->
+                                <div class="flex flex-col items-center pt-8 relative w-1/4">
+                                    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[2px] h-8 bg-brand-500"></div>
+                                    <div class="bg-slate-900 text-slate-200 p-3 rounded-xl border border-slate-700/80 shadow-md text-xs font-bold text-center w-[110px] hover:border-brand-500 transition-colors">
+                                        관리부
+                                        <span class="block text-[9px] font-normal text-slate-400 mt-1">인사 / 행정 / 회계</span>
+                                    </div>
+                                </div>
+                                <div class="flex flex-col items-center pt-8 relative w-1/4">
+                                    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[2px] h-8 bg-brand-500"></div>
+                                    <div class="bg-slate-900 text-slate-200 p-3 rounded-xl border border-slate-700/80 shadow-md text-xs font-bold text-center w-[110px] hover:border-brand-500 transition-colors">
+                                        생산부
+                                        <span class="block text-[9px] font-normal text-slate-400 mt-1">펌프 제조 / 용접 / 설치</span>
+                                    </div>
+                                </div>
+                                <div class="flex flex-col items-center pt-8 relative w-1/4">
+                                    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[2px] h-8 bg-brand-500"></div>
+                                    <div class="bg-slate-900 text-slate-200 p-3 rounded-xl border border-slate-700/80 shadow-md text-xs font-bold text-center w-[110px] hover:border-brand-500 transition-colors">
+                                        품질보증부
+                                        <span class="block text-[9px] font-normal text-slate-400 mt-1">테스트 검수 / ISO</span>
+                                    </div>
+                                </div>
+                                <div class="flex flex-col items-center pt-8 relative w-1/4">
+                                    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[2px] h-8 bg-brand-500"></div>
+                                    <div class="bg-slate-900 text-slate-200 p-3 rounded-xl border border-slate-700/80 shadow-md text-xs font-bold text-center w-[110px] hover:border-brand-500 transition-colors">
+                                        기술연구소
+                                        <span class="block text-[9px] font-normal text-slate-400 mt-1">설계 / 유체 공학 R&D</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- [홍보 영상] -->
+        <section class="py-24 bg-slate-950 border-t border-slate-900 relative">
+            <div class="max-w-7xl mx-auto px-6 flex flex-col items-center">
+                <div class="text-center mb-12 fade-up">
+                    <span class="text-[10px] font-extrabold tracking-widest text-brand-400 bg-brand-500/10 px-3 py-1 rounded-md uppercase">PR Media</span>
+                    <h2 class="text-2xl md:text-4xl font-bold text-white mt-4">비에이텍(주) 기술 홍보 영상</h2>
+                    <p class="text-slate-400 text-sm mt-2">정밀 기계공학과 스마트 솔루션이 만난 최신 수처리 가압 조치 공정</p>
+                </div>
+                
+                <!-- TV Screen Wrap -->
+                <div class="w-full max-w-4xl rounded-2xl overflow-hidden tv-screen fade-up" data-delay="100">
+                    <div class="aspect-video w-full bg-slate-900 relative">
+                        <video src="./기업용광고동영상.mp4" autoplay loop muted playsinline class="w-full h-full object-cover"></video>
+                        <!-- Fallback message overlay if video is missing -->
+                        <div class="absolute inset-0 flex flex-col items-center justify-center bg-slate-950/80 text-slate-400 p-6 text-center pointer-events-none z-10">
+                            <i class="fa-solid fa-play text-brand-500 text-5xl mb-4 animate-bounce"></i>
+                            <h4 class="text-white font-bold text-lg">기업용광고동영상.mp4 재생 데모</h4>
+                            <p class="text-xs text-slate-500 max-w-sm mt-1">로컬 미디어 파일 준비 완료 시 자동 루프 플레이백 구동됩니다.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- [인스타그램 캠페인] -->
+        <section id="campaign" class="py-28 bg-slate-900 border-t border-slate-800">
+            <div class="max-w-7xl mx-auto px-6">
+                <!-- Section Header -->
+                <div class="text-center mb-16 fade-up">
+                    <span class="text-xs uppercase font-extrabold tracking-widest text-cyan-400 bg-cyan-500/10 px-3 py-1 rounded-md">Eco water Campaign</span>
+                    <h2 class="text-3xl md:text-5xl font-black text-white mt-4 tracking-tight">비에이텍과 함께하는 친환경 물 순환 캠페인</h2>
+                    <p class="text-slate-400 mt-2 text-sm md:text-base">도시와 자연이 함께 건강한 물 순환 생태계를 향한 비에이텍의 환경 선언</p>
+                </div>
+                <!-- Instagram Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Post 1 -->
+                    <div class="relative overflow-hidden rounded-2xl aspect-square group border border-slate-800 shadow-xl fade-up" data-delay="100">
+                        <img src="https://images.unsplash.com/photo-1470075801209-17f9ec0cada6?auto=format&fit=crop&w=600&q=80" alt="Eco Water 1" class="absolute inset-0 w-full h-full object-cover transform transition duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-6 text-white flex flex-col justify-end">
+                            <span class="text-[10px] text-brand-400 font-bold uppercase tracking-wider mb-2">Theme 01</span>
+                            <h3 class="text-xl font-bold">생명의 시작</h3>
+                            <p class="text-slate-300 text-xs mt-2 leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                깨끗한 상하수도 공급으로 자연과 인간이 공존하는 친환경 수자원 보호를 선도합니다.
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Post 2 -->
+                    <div class="relative overflow-hidden rounded-2xl aspect-square group border border-slate-800 shadow-xl fade-up" data-delay="200">
+                        <img src="https://images.unsplash.com/photo-1508962914676-134849a727f0?auto=format&fit=crop&w=600&q=80" alt="Eco Water 2" class="absolute inset-0 w-full h-full object-cover transform transition duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-6 text-white flex flex-col justify-end">
+                            <span class="text-[10px] text-cyan-400 font-bold uppercase tracking-wider mb-2">Theme 02</span>
+                            <h3 class="text-xl font-bold">현명한 우수 재활용</h3>
+                            <p class="text-slate-300 text-xs mt-2 leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                버려지는 빗물을 정밀 여과 시스템을 통해 스마트 가치 자원으로 재순환시킵니다.
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Post 3 -->
+                    <div class="relative overflow-hidden rounded-2xl aspect-square group border border-slate-800 shadow-xl fade-up" data-delay="300">
+                        <img src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&w=600&q=80" alt="Eco Water 3" class="absolute inset-0 w-full h-full object-cover transform transition duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-6 text-white flex flex-col justify-end">
+                            <span class="text-[10px] text-indigo-400 font-bold uppercase tracking-wider mb-2">Theme 03</span>
+                            <h3 class="text-xl font-bold">에너지 저감 기술</h3>
+                            <p class="text-slate-300 text-xs mt-2 leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                최신 모터펌프 제어 시스템으로 가동 전력 및 탄소 배출량을 혁신적으로 감축합니다.
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Post 4 -->
+                    <div class="relative overflow-hidden rounded-2xl aspect-square group border border-slate-800 shadow-xl fade-up" data-delay="400">
+                        <img src="https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?auto=format&fit=crop&w=600&q=80" alt="Eco Water 4" class="absolute inset-0 w-full h-full object-cover transform transition duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-6 text-white flex flex-col justify-end">
+                            <span class="text-[10px] text-emerald-400 font-bold uppercase tracking-wider mb-2">Theme 04</span>
+                            <h3 class="text-xl font-bold">그린 에코 투모로우</h3>
+                            <p class="text-slate-300 text-xs mt-2 leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                지속 가능한 친환경 수처리 설비와 신기술로 다음 세대를 위한 내일을 만듭니다.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- [수직 타임라인 연혁] -->
+        <section id="history" class="py-28 bg-slate-950 border-t border-slate-900 relative">
+            <div class="max-w-7xl mx-auto px-6">
+                <!-- Section Header -->
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-24 border-b border-slate-800 pb-8 fade-up">
+                    <div>
+                        <span class="text-xs uppercase font-extrabold tracking-widest text-brand-500 bg-brand-500/10 px-3 py-1 rounded-md">Our History</span>
+                        <h2 class="text-3xl md:text-5xl font-black text-white mt-4 tracking-tight">수직 타임라인 연혁</h2>
+                        <p class="text-slate-400 mt-2 text-sm md:text-base">창립 이래 신뢰와 기술 혁신으로 다져온 주요 행보</p>
+                    </div>
+                    <button @click="openPdfModal('ji.pdf#page=6', '회사 연혁 (6p)', 'pdf')" class="text-xs font-bold text-brand-400 hover:text-brand-300 flex items-center gap-1 mt-4 md:mt-0 bg-brand-500/10 border border-brand-500/20 px-4 py-2 rounded-lg transition">
+                        연혁 파일 열람 &rarr;
+                    </button>
+                </div>
+                <!-- Timeline Axis Container -->
+                <div class="relative w-full">
+                    <!-- Central Vertical Axis Line -->
+                    <div class="absolute left-1/2 transform -translate-x-1/2 w-0.5 h-full bg-slate-800"></div>
+                    <!-- Timeline items (Zig-zag) -->
+                    <div class="space-y-16">
+                        
+                        <!-- 2010 (Left) -->
+                        <div class="relative flex items-center justify-start md:justify-between w-full timeline-item timeline-item-left">
+                            <div class="w-full md:w-[45%] bg-slate-900 p-6 rounded-2xl border border-slate-800 shadow-xl">
+                                <span class="text-2xl font-black text-brand-400">2010.11</span>
+                                <h3 class="text-white font-bold text-lg mt-2">비에이텍 주식회사 설립</h3>
+                                <p class="text-slate-400 text-xs mt-1">(주)강원유체 설립 법인 전환 및 수처리 펌프 생산기반 구축</p>
+                            </div>
+                            <div class="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 rounded-full bg-slate-900 border-4 border-brand-500 flex items-center justify-center">
+                                <div class="w-2 h-2 rounded-full bg-white animate-ping"></div>
+                            </div>
+                            <div class="hidden md:block w-[45%]"></div>
+                        </div>
+                        <!-- 2012 (Right) -->
+                        <div class="relative flex items-center justify-start md:justify-end w-full timeline-item timeline-item-right">
+                            <div class="hidden md:block w-[45%]"></div>
+                            <div class="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 rounded-full bg-slate-900 border-4 border-slate-700 flex items-center justify-center">
+                                <div class="w-2 h-2 rounded-full bg-slate-400"></div>
+                            </div>
+                            <div class="w-full md:w-[45%] bg-slate-900 p-6 rounded-2xl border border-slate-800 shadow-xl">
+                                <span class="text-2xl font-black text-slate-400">2012.12</span>
+                                <h3 class="text-white font-bold text-lg mt-2">벤처기업 인증 및 공장 등록</h3>
+                                <p class="text-slate-400 text-xs mt-1">기술 신뢰도 확보 및 가압 펌프 가공 설비 라인 증설</p>
+                            </div>
+                        </div>
+                        <!-- 2013 (Left) -->
+                        <div class="relative flex items-center justify-start md:justify-between w-full timeline-item timeline-item-left">
+                            <div class="w-full md:w-[45%] bg-slate-900 p-6 rounded-2xl border border-slate-800 shadow-xl">
+                                <span class="text-2xl font-black text-slate-400">2013.02</span>
+                                <h3 class="text-white font-bold text-lg mt-2">비에이텍(주) 사명 변경</h3>
+                                <p class="text-slate-400 text-xs mt-1">글로벌 물산업 리더로 도약하기 위한 사명 변경 및 로고 확립</p>
+                            </div>
+                            <div class="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 rounded-full bg-slate-900 border-4 border-slate-700 flex items-center justify-center">
+                                <div class="w-2 h-2 rounded-full bg-slate-400"></div>
+                            </div>
+                            <div class="hidden md:block w-[45%]"></div>
+                        </div>
+                        <!-- 2017 (Right) -->
+                        <div class="relative flex items-center justify-start md:justify-end w-full timeline-item timeline-item-right">
+                            <div class="hidden md:block w-[45%]"></div>
+                            <div class="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 rounded-full bg-slate-900 border-4 border-slate-700 flex items-center justify-center">
+                                <div class="w-2 h-2 rounded-full bg-slate-400"></div>
+                            </div>
+                            <div class="w-full md:w-[45%] bg-slate-900 p-6 rounded-2xl border border-slate-800 shadow-xl">
+                                <span class="text-2xl font-black text-slate-400">2017.12</span>
+                                <h3 class="text-white font-bold text-lg mt-2">강원도지사 표창 수상</h3>
+                                <p class="text-slate-400 text-xs mt-1">강원특별자치도 상수도 관리 및 안정적인 공급에 기여한 공로 표창</p>
+                            </div>
+                        </div>
+                        <!-- 2023 (Left) -->
+                        <div class="relative flex items-center justify-start md:justify-between w-full timeline-item timeline-item-left">
+                            <div class="w-full md:w-[45%] bg-slate-900 p-6 rounded-2xl border border-slate-800 shadow-xl">
+                                <span class="text-2xl font-black text-slate-400">2023.07</span>
+                                <h3 class="text-white font-bold text-lg mt-2">직접생산확인증명서 취득 (11종)</h3>
+                                <p class="text-slate-400 text-xs mt-1">다단벌류트 외 11종 핵심 모터펌프 공공조달 직접 생산 등록 승인</p>
+                            </div>
+                            <div class="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 rounded-full bg-slate-900 border-4 border-slate-700 flex items-center justify-center">
+                                <div class="w-2 h-2 rounded-full bg-slate-400"></div>
+                            </div>
+                            <div class="hidden md:block w-[45%]"></div>
+                        </div>
+                        <!-- 2024 (Right) -->
+                        <div class="relative flex items-center justify-start md:justify-end w-full timeline-item timeline-item-right">
+                            <div class="hidden md:block w-[45%]"></div>
+                            <div class="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 rounded-full bg-slate-900 border-4 border-brand-500 flex items-center justify-center">
+                                <div class="w-2 h-2 rounded-full bg-white animate-ping"></div>
+                            </div>
+                            <div class="w-full md:w-[45%] bg-slate-900 p-6 rounded-2xl border border-slate-800 shadow-xl">
+                                <span class="text-2xl font-black text-brand-400">2024.09</span>
+                                <h3 class="text-white font-bold text-lg mt-2">Main-Biz & ISO 9001:2015 획득</h3>
+                                <p class="text-slate-400 text-xs mt-1">경영혁신 중소기업(Main-Biz) 선정 및 품질경영시스템 글로벌 인증</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- [브로슈어 모달 CTA] -->
+        <section class="py-24 bg-gradient-to-r from-brand-900 via-slate-950 to-brand-950 border-t border-slate-800 relative overflow-hidden">
+            <!-- Background Decoration Pattern -->
+            <div class="absolute inset-0 bg-[linear-gradient(to_right,rgba(6,182,212,0.05)_1px,transparent_1px),linear-gradient(to_bottom,rgba(6,182,212,0.05)_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none"></div>
+            
+            <div class="max-w-5xl mx-auto px-6 relative z-10 text-center flex flex-col items-center">
+                <span class="bg-brand-500/10 text-brand-400 text-xs font-bold px-4 py-1.5 rounded-full border border-brand-500/20 mb-6">
+                    <i class="fa-solid fa-gem text-xs mr-1"></i> Batech Premium Brochure
+                </span>
+                <h2 class="text-3xl md:text-5xl font-black text-white mb-6 leading-tight">
+                    비에이텍 프리미엄 디지털 브로슈어
+                </h2>
+                <p class="text-slate-400 max-w-2xl text-sm md:text-base mb-10 leading-relaxed font-light">
+                    비에이텍(주)이 보유한 11대 펌프 규격과 최신 수처리 가압 핵심 설비 특허 정보,<br>
+                    그리고 지자체 엔지니어링 구축 파트너십 가이드를 지금 바로 열람하세요.
+                </p>
+                <button @click="openPdfModal('bro.pdf', '비에이텍 공식 브로슈어', 'catalog')" 
+                        class="bg-white text-slate-950 hover:bg-brand-100 font-extrabold py-5 px-10 rounded-2xl shadow-xl hover:shadow-white/5 transition duration-300 transform hover:-translate-y-1 flex items-center gap-3 text-base">
+                    공식 브로슈어 열람하기 (PDF 4면)
+                    <i class="fa-solid fa-chevron-right text-sm"></i>
+                </button>
+            </div>
+        </section>
+        <!-- [11대 펌프 제품 그리드] -->
+        <section id="products" class="py-28 bg-slate-900 border-t border-slate-800">
+            <div class="max-w-7xl mx-auto px-6">
+                <!-- Section Header -->
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 border-b border-slate-800 pb-8 fade-up">
+                    <div>
+                        <span class="text-xs uppercase font-extrabold tracking-widest text-cyan-400 bg-cyan-500/10 px-3 py-1 rounded-md">Products</span>
+                        <h2 class="text-3xl md:text-5xl font-black text-white mt-4 tracking-tight">11대 펌프 라인업</h2>
+                        <p class="text-slate-400 mt-2 text-sm md:text-base">직접생산확인을 득한 비에이텍의 고신뢰성 펌프 솔루션</p>
+                    </div>
+                    <button @click="openPdfModal('ji.pdf#page=8', '제조물품 리스트 (8p)', 'pdf')" class="text-xs font-bold text-brand-400 hover:text-brand-300 flex items-center gap-1 mt-4 md:mt-0 bg-brand-500/10 border border-brand-500/20 px-4 py-2 rounded-lg transition">
+                        전체 제조규격 열람 &rarr;
+                    </button>
+                </div>
+                <!-- Products Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Pump 1 -->
+                    <div @click="openPdfModal('다단벌류트펌프_매뉴얼.pdf', '다단벌류트펌프 기술 카탈로그', 'catalog')" 
+                         class="glow-card p-8 rounded-2xl cursor-pointer group flex flex-col justify-between h-72 fade-up" data-delay="100">
+                        <div>
+                            <div class="w-12 h-12 bg-brand-500/10 rounded-xl flex items-center justify-center text-brand-400 text-xl border border-brand-500/20 mb-6 group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-network-wired"></i>
+                            </div>
+                            <h3 class="text-white font-extrabold text-lg group-hover:text-brand-400 transition-colors">다단벌류트펌프</h3>
+                            <p class="text-slate-400 text-xs mt-2 leading-relaxed">고압 송수가 요구되는 대규모 상하수설비 및 공업용 용수 급수용</p>
+                        </div>
+                        <span class="text-[10px] text-brand-400 font-semibold group-hover:translate-x-2 transition-transform self-end flex items-center gap-1">
+                            카탈로그 보기 <i class="fa-solid fa-arrow-right"></i>
+                        </span>
+                    </div>
+                    <!-- Pump 2 -->
+                    <div @click="openPdfModal('수중펌프_매뉴얼.pdf', '수중펌프 기술 카탈로그', 'catalog')" 
+                         class="glow-card p-8 rounded-2xl cursor-pointer group flex flex-col justify-between h-72 fade-up" data-delay="150">
+                        <div>
+                            <div class="w-12 h-12 bg-cyan-500/10 rounded-xl flex items-center justify-center text-cyan-400 text-xl border border-cyan-500/20 mb-6 group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-water"></i>
+                            </div>
+                            <h3 class="text-white font-extrabold text-lg group-hover:text-cyan-400 transition-colors">수중펌프</h3>
+                            <p class="text-slate-400 text-xs mt-2 leading-relaxed">하수처리장 및 침수 방지용 고유량 방류 배수 시스템에 탑재</p>
+                        </div>
+                        <span class="text-[10px] text-cyan-400 font-semibold group-hover:translate-x-2 transition-transform self-end flex items-center gap-1">
+                            카탈로그 보기 <i class="fa-solid fa-arrow-right"></i>
+                        </span>
+                    </div>
+                    <!-- Pump 3 -->
+                    <div @click="openPdfModal('모노펌프_매뉴얼.pdf', '모노펌프 기술 카탈로그', 'catalog')" 
+                         class="glow-card p-8 rounded-2xl cursor-pointer group flex flex-col justify-between h-72 fade-up" data-delay="200">
+                        <div>
+                            <div class="w-12 h-12 bg-indigo-500/10 rounded-xl flex items-center justify-center text-indigo-400 text-xl border border-indigo-500/20 mb-6 group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-arrow-turn-up"></i>
+                            </div>
+                            <h3 class="text-white font-extrabold text-lg group-hover:text-indigo-400 transition-colors">모노펌프</h3>
+                            <p class="text-slate-400 text-xs mt-2 leading-relaxed">고점도 슬러지 및 화학 약품 이송을 위한 편심 회전 고신뢰성 펌프</p>
+                        </div>
+                        <span class="text-[10px] text-indigo-400 font-semibold group-hover:translate-x-2 transition-transform self-end flex items-center gap-1">
+                            카탈로그 보기 <i class="fa-solid fa-arrow-right"></i>
+                        </span>
+                    </div>
+                    <!-- Pump 4 -->
+                    <div @click="openPdfModal('양흡입펌프_매뉴얼.pdf', '양흡입펌프 기술 카탈로그', 'catalog')" 
+                         class="glow-card p-8 rounded-2xl cursor-pointer group flex flex-col justify-between h-72 fade-up" data-delay="250">
+                        <div>
+                            <div class="w-12 h-12 bg-brand-500/10 rounded-xl flex items-center justify-center text-brand-400 text-xl border border-brand-500/20 mb-6 group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-arrows-left-right"></i>
+                            </div>
+                            <h3 class="text-white font-extrabold text-lg group-hover:text-brand-400 transition-colors">양흡입펌프</h3>
+                            <p class="text-slate-400 text-xs mt-2 leading-relaxed">유량 균형이 뛰어나고 진동이 매우 낮아 대규모 공칭 배수관에 적합</p>
+                        </div>
+                        <span class="text-[10px] text-brand-400 font-semibold group-hover:translate-x-2 transition-transform self-end flex items-center gap-1">
+                            카탈로그 보기 <i class="fa-solid fa-arrow-right"></i>
+                        </span>
+                    </div>
+                    <!-- Pump 5 -->
+                    <div @click="openPdfModal('자흡식펌프_매뉴얼.pdf', '자흡식펌프 기술 카탈로그', 'catalog')" 
+                         class="glow-card p-8 rounded-2xl cursor-pointer group flex flex-col justify-between h-72 fade-up" data-delay="300">
+                        <div>
+                            <div class="w-12 h-12 bg-cyan-500/10 rounded-xl flex items-center justify-center text-cyan-400 text-xl border border-cyan-500/20 mb-6 group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-rotate-left"></i>
+                            </div>
+                            <h3 class="text-white font-extrabold text-lg group-hover:text-cyan-400 transition-colors">자흡식펌프</h3>
+                            <p class="text-slate-400 text-xs mt-2 leading-relaxed">배관 내 공기를 스스로 진공 흡입하여 신속하게 급수 이송 개시</p>
+                        </div>
+                        <span class="text-[10px] text-cyan-400 font-semibold group-hover:translate-x-2 transition-transform self-end flex items-center gap-1">
+                            카탈로그 보기 <i class="fa-solid fa-arrow-right"></i>
+                        </span>
+                    </div>
+                    <!-- Pump 6 -->
+                    <div @click="openPdfModal('수중믹서_매뉴얼.pdf', '수중믹서 기술 카탈로그', 'catalog')" 
+                         class="glow-card p-8 rounded-2xl cursor-pointer group flex flex-col justify-between h-72 fade-up" data-delay="350">
+                        <div>
+                            <div class="w-12 h-12 bg-indigo-500/10 rounded-xl flex items-center justify-center text-indigo-400 text-xl border border-indigo-500/20 mb-6 group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-hurricane"></i>
+                            </div>
+                            <h3 class="text-white font-extrabold text-lg group-hover:text-indigo-400 transition-colors">수중믹서</h3>
+                            <p class="text-slate-400 text-xs mt-2 leading-relaxed">정화조 내 고형물의 균일 교반 및 퇴적 방지용 수류 제어 장비</p>
+                        </div>
+                        <span class="text-[10px] text-indigo-400 font-semibold group-hover:translate-x-2 transition-transform self-end flex items-center gap-1">
+                            카탈로그 보기 <i class="fa-solid fa-arrow-right"></i>
+                        </span>
+                    </div>
+                    <!-- Pump 7 -->
+                    <div @click="openPdfModal('기어드펌프_매뉴얼.pdf', '기어드펌프 기술 카탈로그', 'catalog')" 
+                         class="glow-card p-8 rounded-2xl cursor-pointer group flex flex-col justify-between h-72 fade-up" data-delay="400">
+                        <div>
+                            <div class="w-12 h-12 bg-brand-500/10 rounded-xl flex items-center justify-center text-brand-400 text-xl border border-brand-500/20 mb-6 group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-gears"></i>
+                            </div>
+                            <h3 class="text-white font-extrabold text-lg group-hover:text-brand-400 transition-colors">기어드펌프</h3>
+                            <p class="text-slate-400 text-xs mt-2 leading-relaxed">기어 회전을 이용한 정량 고압 유압 공급 및 특수 고화유 이송</p>
+                        </div>
+                        <span class="text-[10px] text-brand-400 font-semibold group-hover:translate-x-2 transition-transform self-end flex items-center gap-1">
+                            카탈로그 보기 <i class="fa-solid fa-arrow-right"></i>
+                        </span>
+                    </div>
+                    <!-- Pump 8 -->
+                    <div @click="openPdfModal('피스톤펌프_매뉴얼.pdf', '피스톤펌프 기술 카탈로그', 'catalog')" 
+                         class="glow-card p-8 rounded-2xl cursor-pointer group flex flex-col justify-between h-72 fade-up" data-delay="450">
+                        <div>
+                            <div class="w-12 h-12 bg-cyan-500/10 rounded-xl flex items-center justify-center text-cyan-400 text-xl border border-cyan-500/20 mb-6 group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-repeat"></i>
+                            </div>
+                            <h3 class="text-white font-extrabold text-lg group-hover:text-cyan-400 transition-colors">피스톤펌프</h3>
+                            <p class="text-slate-400 text-xs mt-2 leading-relaxed">왕복 피스톤 메커니즘을 적용한 초고압 가압 분사용 고효율 모듈</p>
+                        </div>
+                        <span class="text-[10px] text-cyan-400 font-semibold group-hover:translate-x-2 transition-transform self-end flex items-center gap-1">
+                            카탈로그 보기 <i class="fa-solid fa-arrow-right"></i>
+                        </span>
+                    </div>
+                    <!-- Pump 9 -->
+                    <div @click="openPdfModal('다이어프램펌프_매뉴얼.pdf', '다이어프램펌프 기술 카탈로그', 'catalog')" 
+                         class="glow-card p-8 rounded-2xl cursor-pointer group flex flex-col justify-between h-72 fade-up" data-delay="500">
+                        <div>
+                            <div class="w-12 h-12 bg-indigo-500/10 rounded-xl flex items-center justify-center text-indigo-400 text-xl border border-indigo-500/20 mb-6 group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-drum"></i>
+                            </div>
+                            <h3 class="text-white font-extrabold text-lg group-hover:text-indigo-400 transition-colors">다이어프램펌프</h3>
+                            <p class="text-slate-400 text-xs mt-2 leading-relaxed">다이어프램 왕복을 통한 슬러리 및 고산·고알칼리 약품 정밀 주입</p>
+                        </div>
+                        <span class="text-[10px] text-indigo-400 font-semibold group-hover:translate-x-2 transition-transform self-end flex items-center gap-1">
+                            카탈로그 보기 <i class="fa-solid fa-arrow-right"></i>
+                        </span>
+                    </div>
+                    <!-- Pump 10 -->
+                    <div @click="openPdfModal('편흡입벌류트펌프_매뉴얼.pdf', '편흡입벌류트펌프 기술 카탈로그', 'catalog')" 
+                         class="glow-card p-8 rounded-2xl cursor-pointer group flex flex-col justify-between h-72 fade-up" data-delay="550">
+                        <div>
+                            <div class="w-12 h-12 bg-brand-500/10 rounded-xl flex items-center justify-center text-brand-400 text-xl border border-brand-500/20 mb-6 group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-compress"></i>
+                            </div>
+                            <h3 class="text-white font-extrabold text-lg group-hover:text-brand-400 transition-colors">편흡입벌류트펌프</h3>
+                            <p class="text-slate-400 text-xs mt-2 leading-relaxed">구조가 매우 단순하여 보수가 용이한 가장 표준적인 산업용 워터 펌프</p>
+                        </div>
+                        <span class="text-[10px] text-brand-400 font-semibold group-hover:translate-x-2 transition-transform self-end flex items-center gap-1">
+                            카탈로그 보기 <i class="fa-solid fa-arrow-right"></i>
+                        </span>
+                    </div>
+                    <!-- Pump 11 -->
+                    <div @click="openPdfModal('부스터펌프시스템_매뉴얼.pdf', '부스터펌프시스템 기술 카탈로그', 'catalog')" 
+                         class="glow-card p-8 rounded-2xl cursor-pointer group flex flex-col justify-between h-72 fade-up" data-delay="600">
+                        <div>
+                            <div class="w-12 h-12 bg-cyan-500/10 rounded-xl flex items-center justify-center text-cyan-400 text-xl border border-cyan-500/20 mb-6 group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-rocket"></i>
+                            </div>
+                            <h3 class="text-white font-extrabold text-lg group-hover:text-cyan-400 transition-colors">부스터펌프시스템</h3>
+                            <p class="text-slate-400 text-xs mt-2 leading-relaxed">여러 대의 인버터 펌프를 병렬 연동 제어하여 관로 압력을 자동 일정화</p>
+                        </div>
+                        <span class="text-[10px] text-cyan-400 font-semibold group-hover:translate-x-2 transition-transform self-end flex items-center gap-1">
+                            카탈로그 보기 <i class="fa-solid fa-arrow-right"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- [조달청 납품실적 표] -->
+        <section class="py-24 bg-slate-950 border-t border-slate-900 relative">
+            <div class="max-w-7xl mx-auto px-6">
+                <!-- Section Header -->
+                <div class="text-center mb-16 fade-up">
+                    <span class="text-xs uppercase font-extrabold tracking-widest text-brand-400 bg-brand-500/10 px-3 py-1 rounded-md">Public Track Record</span>
+                    <h2 class="text-2xl md:text-4xl font-bold text-white mt-4">조달청 및 관공서 주요 납품 실적</h2>
+                    <p class="text-slate-400 text-sm mt-2">지자체 상하수설비 및 정수장 펌프 조달 구축 실적 현황</p>
+                </div>
+                <!-- Responsive Table Wrapper -->
+                <div class="overflow-x-auto rounded-2xl border border-slate-800 shadow-2xl fade-up" data-delay="100">
+                    <table class="w-full text-left border-collapse min-w-[700px]">
+                        <thead>
+                            <tr class="bg-slate-900/80 border-b border-slate-800 text-brand-400 text-xs font-bold uppercase tracking-wider">
+                                <th class="p-5">계약 연도</th>
+                                <th class="p-5">수요 기관(발주처)</th>
+                                <th class="p-5">납품 계약명 및 설치 규모</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-slate-300 text-sm divide-y divide-slate-800/60">
+                            <tr class="hover:bg-slate-900/40 transition">
+                                <td class="p-5 font-semibold text-white">2024년</td>
+                                <td class="p-5">강원특별자치도 춘천시 상하수도사업본부</td>
+                                <td class="p-5">소양정수장 송수펌프실 고효율 다단벌류트펌프 300HP 및 스마트 제어 시스템 납품</td>
+                            </tr>
+                            <tr class="bg-slate-900/20 hover:bg-slate-900/40 transition">
+                                <td class="p-5 font-semibold text-white">2023년</td>
+                                <td class="p-5">홍천군 상하수도사업소</td>
+                                <td class="p-5">홍천읍 농어촌 용수 배수지 송가압장 가압용 단단 펌프 세트 증설 및 파이프 시공</td>
+                            </tr>
+                            <tr class="hover:bg-slate-900/40 transition">
+                                <td class="p-5 font-semibold text-white">2023년</td>
+                                <td class="p-5">강원특별자치도 횡성군청</td>
+                                <td class="p-5">횡성 공공하수처리시설 3단 유입 오수중펌프 및 수중믹서 교체 조달 공급</td>
+                            </tr>
+                            <tr class="bg-slate-900/20 hover:bg-slate-900/40 transition">
+                                <td class="p-5 font-semibold text-white">2022년</td>
+                                <td class="p-5">춘천시청 재난안전대책본부</td>
+                                <td class="p-5">배수펌프장 비상대비 침수방지용 대형 양흡입벌류트 구동 펌프 500HP 긴급 조달 납품</td>
+                            </tr>
+                            <tr class="hover:bg-slate-900/40 transition">
+                                <td class="p-5 font-semibold text-white">2021년</td>
+                                <td class="p-5">한국수자원공사 강원지역본부</td>
+                                <td class="p-5">횡성 송수 가압장 인버터 기반 부스터펌프 시스템 고효율 인증 납품 및 설치 완공</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+        <!-- [보유 인증서 정렬] -->
+        <section id="credentials" class="py-28 bg-slate-900 border-t border-slate-800">
+            <div class="max-w-7xl mx-auto px-6">
+                <!-- Section Header -->
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 border-b border-slate-800 pb-8 fade-up">
+                    <div>
+                        <span class="text-xs uppercase font-extrabold tracking-widest text-cyan-400 bg-cyan-500/10 px-3 py-1 rounded-md">Credentials</span>
+                        <h2 class="text-3xl md:text-5xl font-black text-white mt-4 tracking-tight">인증 및 특허 현황</h2>
+                        <p class="text-slate-400 mt-2 text-sm md:text-base">공신력 있는 국가 공인 인증과 기술력 특허 증빙</p>
+                    </div>
+                </div>
+                <!-- Acrylic Card Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Cert 1 -->
+                    <div @click="openPdfModal('ji.pdf#page=12', '사업자등록증 & 공장등록증', 'pdf')" 
+                         class="relative bg-gradient-to-b from-slate-800/40 to-slate-900/40 border border-slate-700/50 hover:border-brand-500 p-8 rounded-2xl cursor-pointer group text-center shadow-xl backdrop-blur-sm transition-all duration-300 hover:-translate-y-2 fade-up" data-delay="100">
+                        <div class="w-16 h-16 bg-brand-500/10 rounded-full flex items-center justify-center text-brand-400 text-2xl mx-auto mb-6 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-award"></i>
+                        </div>
+                        <h3 class="text-white font-bold text-base group-hover:text-brand-400 transition-colors">사업/공장 등록</h3>
+                        <p class="text-slate-400 text-xs mt-2">국가 정식 공장 제조 면허 및 춘천 퇴계농공단지 등록증</p>
+                    </div>
+                    <!-- Cert 2 -->
+                    <div @click="openPdfModal('ji.pdf#page=15', '직접생산확인증명서', 'pdf')" 
+                         class="relative bg-gradient-to-b from-slate-800/40 to-slate-900/40 border border-slate-700/50 hover:border-cyan-500 p-8 rounded-2xl cursor-pointer group text-center shadow-xl backdrop-blur-sm transition-all duration-300 hover:-translate-y-2 fade-up" data-delay="200">
+                        <div class="w-16 h-16 bg-cyan-500/10 rounded-full flex items-center justify-center text-cyan-400 text-2xl mx-auto mb-6 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-stamp"></i>
+                        </div>
+                        <h3 class="text-white font-bold text-base group-hover:text-cyan-400 transition-colors">직접생산 확인증명</h3>
+                        <p class="text-slate-400 text-xs mt-2">조달청 공공 입찰을 위한 모터펌프 11종 정식 제조확인서</p>
+                    </div>
+                    <!-- Cert 3 -->
+                    <div @click="openPdfModal('ji.pdf#page=17', 'ISO 9001:2015', 'pdf')" 
+                         class="relative bg-gradient-to-b from-slate-800/40 to-slate-900/40 border border-slate-700/50 hover:border-brand-500 p-8 rounded-2xl cursor-pointer group text-center shadow-xl backdrop-blur-sm transition-all duration-300 hover:-translate-y-2 fade-up" data-delay="300">
+                        <div class="w-16 h-16 bg-brand-500/10 rounded-full flex items-center justify-center text-brand-400 text-2xl mx-auto mb-6 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-certificate"></i>
+                        </div>
+                        <h3 class="text-white font-bold text-base group-hover:text-brand-400 transition-colors">ISO 9001:2015</h3>
+                        <p class="text-slate-400 text-xs mt-2">국제 표준화 기구에서 공인한 수처리 펌프 기계 설계/제조 품질인증</p>
+                    </div>
+                    <!-- Cert 4 -->
+                    <div @click="openPdfModal('ji.pdf#page=19', 'Main-Biz 및 표창장', 'pdf')" 
+                         class="relative bg-gradient-to-b from-slate-800/40 to-slate-900/40 border border-slate-700/50 hover:border-cyan-500 p-8 rounded-2xl cursor-pointer group text-center shadow-xl backdrop-blur-sm transition-all duration-300 hover:-translate-y-2 fade-up" data-delay="400">
+                        <div class="w-16 h-16 bg-cyan-500/10 rounded-full flex items-center justify-center text-cyan-400 text-2xl mx-auto mb-6 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-medal"></i>
+                        </div>
+                        <h3 class="text-white font-bold text-base group-hover:text-cyan-400 transition-colors">Main-Biz / 도지사 표창</h3>
+                        <p class="text-slate-400 text-xs mt-2">경영혁신형 중소기업 인증서 및 강원특별자치도지사 공로 표창</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- [지도 & 문의 양식] -->
+        <section id="contact" class="py-24 bg-slate-950 border-t border-slate-900">
+            <div class="max-w-7xl mx-auto px-6">
+                <!-- Section Header -->
+                <div class="text-center mb-16 fade-up">
+                    <span class="text-xs uppercase font-extrabold tracking-widest text-brand-400 bg-brand-500/10 px-3 py-1 rounded-md">Contact Us</span>
+                    <h2 class="text-2xl md:text-4xl font-bold text-white mt-4">오시는 길 & 기술 문의</h2>
+                    <p class="text-slate-400 text-sm mt-2">비에이텍(주) 퇴계 농공단지 공장 지도 및 1:1 담당자 문의 폼</p>
+                </div>
+                <!-- 50:50 Flexible Layout -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-stretch">
+                    <!-- Left: Google Maps iframe -->
+                    <div class="bg-slate-900 p-6 rounded-3xl border border-slate-850 flex flex-col justify-between shadow-2xl fade-up" data-delay="100">
+                        <div class="rounded-2xl overflow-hidden h-[350px] w-full relative">
+                            <!-- Google Maps Location pointing to 퇴계공단2길 64 -->
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3159.957657989392!2d127.73356067645163!3d37.838499271968595!2m3!1f0!2f0!3f0!3m2!1i1020!2i768!4f13.1!3m3!1m2!1s0x3562e5be326eeecb%3A0xc3c5b5275e7a9117!2z6rCV7JuQ64-EIOyYmOyynOyLnCDthrTqs4Tqs7Xri6gy6ri4IDY0!5e0!3m2!1sko!2skr!4v1718392182000!5m2!1sko!2skr" 
+                                    class="w-full h-full border-0 absolute inset-0" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="비에이텍 오시는길"></iframe>
+                        </div>
+                        <div class="mt-6 space-y-2 text-sm text-slate-300">
+                            <p class="flex items-center gap-2">
+                                <i class="fa-solid fa-map-pin text-brand-500 w-5"></i>
+                                <span class="font-bold text-white">주소:</span> 강원특별자치도 춘천시 퇴계공단2길 64 (퇴계제2농공단지)
+                            </p>
+                            <p class="flex items-center gap-2">
+                                <i class="fa-solid fa-phone text-brand-500 w-5"></i>
+                                <span class="font-bold text-white">전화:</span> (033) 264-9243 | 팩스: (033) 251-5747
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Right: Technical Inquiry Form -->
+                    <div class="bg-slate-900 p-8 rounded-3xl border border-slate-850 shadow-2xl flex flex-col justify-between fade-up" data-delay="200">
+                        <h3 class="text-lg font-bold text-white mb-6 flex items-center gap-2">
+                            <i class="fa-solid fa-paper-plane text-cyan-400"></i> 신속 기술 문의 접수
+                        </h3>
+                        <form @submit.prevent="submitForm" class="space-y-4">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <label for="client_name" class="block text-xs text-slate-400 font-bold mb-2 uppercase">고객명 / 업체명</label>
+                                    <input type="text" id="client_name" required 
+                                           class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white text-sm focus:border-brand-500 focus:outline-none transition-colors" placeholder="홍길동 과장">
+                                </div>
+                                <div>
+                                    <label for="contact_num" class="block text-xs text-slate-400 font-bold mb-2 uppercase">연락처</label>
+                                    <input type="text" id="contact_num" required 
+                                           class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white text-sm focus:border-brand-500 focus:outline-none transition-colors" placeholder="010-1234-5678">
+                                </div>
+                            </div>
+                            <div>
+                                <label for="email" class="block text-xs text-slate-400 font-bold mb-2 uppercase">이메일 주소</label>
+                                <input type="email" id="email" required 
+                                       class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white text-sm focus:border-brand-500 focus:outline-none transition-colors" placeholder="user@company.com">
+                            </div>
+                            <div>
+                                <label for="message" class="block text-xs text-slate-400 font-bold mb-2 uppercase">상세 애로사항 및 상담 내용</label>
+                                <textarea id="message" rows="4" required 
+                                          class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white text-sm focus:border-brand-500 focus:outline-none transition-colors" placeholder="가압 부스터 시스템 견적 요청 및 펌프 고압 배관 스펙에 대한 질의 사항 기재..."></textarea>
+                            </div>
+                            <button type="submit" 
+                                    class="w-full bg-brand-500 hover:bg-brand-400 text-slate-950 font-black py-4 px-6 rounded-xl shadow-lg transition duration-200 uppercase tracking-wider text-sm">
+                                문의 양식 제출하기
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- INTRANET VIEW (Employee Only Mode) -->
+    <main x-show="mode === 'intranet'" class="pt-28 min-h-screen bg-slate-950 pb-24" x-transition:enter="transition ease-out duration-500" x-transition:enter-start="opacity-0 translate-y-6" x-transition:enter-end="opacity-100 translate-y-0">
+        <div class="max-w-7xl mx-auto px-6">
+            
+            <!-- Intranet Header / Title -->
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-12 border-b border-slate-800 pb-8">
+                <div class="flex items-center gap-3">
+                    <div class="p-3 bg-rose-500/10 border border-rose-500/30 rounded-2xl text-rose-500 text-2xl shadow-inner animate-pulse">
+                        <i class="fa-solid fa-lock"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-3xl font-black text-white tracking-tight">임직원 전용 INTRANET</h2>
+                        <p class="text-rose-400 font-bold text-xs uppercase tracking-wider">Batech Internal Administrative System</p>
+                    </div>
+                </div>
+                <!-- Standard Digital Clock Component -->
+                <div x-init="setInterval(() => { 
+                    let now = new Date();
+                    let pad = (n) => String(n).padStart(2, '0');
+                    currentTime = `${now.getFullYear()}.${pad(now.getMonth()+1)}.${pad(now.getDate())} ${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}`;
+                }, 1000)" class="bg-slate-900 border border-slate-800 px-6 py-3 rounded-2xl text-cyan-400 font-mono text-xl font-bold tracking-widest shadow-xl flex items-center gap-3">
+                    <span class="text-[9px] font-sans font-bold text-slate-500 uppercase tracking-widest block bg-slate-950 px-2 py-1 rounded">사내시계</span>
+                    <span x-text="currentTime || '2026.06.14 20:10:00'"></span>
+                </div>
+            </div>
+            <!-- Hub Cards (4 Cards Grid) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+                <!-- Card 1 -->
+                <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl hover:border-rose-500 transition-colors shadow-lg hover:shadow-rose-500/5 group cursor-pointer">
+                    <div class="w-12 h-12 bg-rose-500/10 rounded-xl flex items-center justify-center text-rose-500 text-xl border border-rose-500/20 mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-calendar-check"></i>
+                    </div>
+                    <h3 class="text-white font-extrabold text-sm">업무현황 관리</h3>
+                    <p class="text-slate-400 text-xs mt-1">지자체 펌프 정비 및 납품 현장 출동 스케줄링 현황 보고</p>
+                </div>
+                <!-- Card 2 -->
+                <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl hover:border-rose-500 transition-colors shadow-lg hover:shadow-rose-500/5 group cursor-pointer">
+                    <div class="w-12 h-12 bg-rose-500/10 rounded-xl flex items-center justify-center text-rose-500 text-xl border border-rose-500/20 mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-id-card"></i>
+                    </div>
+                    <h3 class="text-white font-extrabold text-sm">인사행정 시스템</h3>
+                    <p class="text-slate-400 text-xs mt-1">임직원 근태 관리, 급여 명세 및 연차 신청서 발행 조회</p>
+                </div>
+                <!-- Card 3 -->
+                <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl hover:border-rose-500 transition-colors shadow-lg hover:shadow-rose-500/5 group cursor-pointer">
+                    <div class="w-12 h-12 bg-rose-500/10 rounded-xl flex items-center justify-center text-rose-500 text-xl border border-rose-500/20 mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-signature"></i>
+                    </div>
+                    <h3 class="text-white font-extrabold text-sm">전자결재 모듈</h3>
+                    <p class="text-slate-400 text-xs mt-1">도면 승인 신청서, 출장 품의 기안 및 공무 결재 승인</p>
+                </div>
+                <!-- Card 4 -->
+                <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl hover:border-rose-500 transition-colors shadow-lg hover:shadow-rose-500/5 group cursor-pointer">
+                    <div class="w-12 h-12 bg-cyan-500/10 rounded-xl flex items-center justify-center text-cyan-400 text-xl border border-cyan-500/20 mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-brain"></i>
+                    </div>
+                    <h3 class="text-white font-extrabold text-sm">AI 현장 지원</h3>
+                    <p class="text-slate-400 text-xs mt-1">정비 매뉴얼 기반 실시간 고장 상황 진단 AI 비서 구동</p>
+                </div>
+            </div>
+            <!-- Lower Layout: (Tabs & Simulator) on Left [2/3] + Notice board on Right [1/3] -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                
+                <!-- Left 2/3: Roster Tab / AI Simulator Tab -->
+                <div class="lg:col-span-2 bg-slate-900 border border-slate-800 rounded-3xl p-8 flex flex-col justify-between shadow-2xl">
+                    <div>
+                        <!-- Tab Header Switch -->
+                        <div class="flex border-b border-slate-800 mb-8 gap-4">
+                            <button @click="intranetTab = 'roster'" 
+                                    :class="intranetTab === 'roster' ? 'border-rose-500 text-rose-400 font-extrabold' : 'border-transparent text-slate-500 hover:text-slate-300'"
+                                    class="pb-4 px-2 border-b-2 text-base font-semibold transition-colors flex items-center gap-2">
+                                <i class="fa-solid fa-clock-rotate-left"></i> 금일 정비 출동 및 당직 현황
+                            </button>
+                            <button @click="intranetTab = 'ai'" 
+                                    :class="intranetTab === 'ai' ? 'border-rose-500 text-rose-400 font-extrabold' : 'border-transparent text-slate-500 hover:text-slate-300'"
+                                    class="pb-4 px-2 border-b-2 text-base font-semibold transition-colors flex items-center gap-2">
+                                <i class="fa-solid fa-robot"></i> AI 기술 지원 지식베이스
+                            </button>
+                        </div>
+                        <!-- Tab Content 1: Duty Roster Table -->
+                        <div x-show="intranetTab === 'roster'" x-transition:enter="transition opacity duration-300" class="overflow-x-auto">
+                            <table class="w-full text-left border-collapse min-w-[500px]">
+                                <thead>
+                                    <tr class="border-b border-slate-800 text-slate-400 text-xs font-bold uppercase tracking-wider pb-3">
+                                        <th class="py-3 px-2">출동 담당 조</th>
+                                        <th class="py-3 px-2">설치/수정 현장</th>
+                                        <th class="py-3 px-2">조치 내용</th>
+                                        <th class="py-3 px-2 text-right">진척 상태</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="text-slate-300 text-xs divide-y divide-slate-800/40">
+                                    <tr>
+                                        <td class="py-4 px-2 font-bold text-white">현장 정비 A조</td>
+                                        <td class="py-4 px-2">춘천 소양정수장</td>
+                                        <td class="py-4 px-2">다단 펌프 가스켓 누수 긴급 패킹 교환</td>
+                                        <td class="py-4 px-2 text-right">
+                                            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-semibold bg-yellow-500/10 text-yellow-500 border border-yellow-500/20">
+                                                <span class="w-1.5 h-1.5 rounded-full bg-yellow-500 animate-pulse"></span> 처리진행
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-4 px-2 font-bold text-white">설비 배관 B조</td>
+                                        <td class="py-4 px-2">홍천 용수 가압장</td>
+                                        <td class="py-4 px-2">송수관로 300A 밸브 수압 테스트 완료</td>
+                                        <td class="py-4 px-2 text-right">
+                                            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-semibold bg-emerald-500/10 text-emerald-500 border border-emerald-500/20">
+                                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> 조치완료
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-4 px-2 font-bold text-white">품질 검사 C조</td>
+                                        <td class="py-4 px-2">퇴계공단 생산본부</td>
+                                        <td class="py-4 px-2">출하 전 부스터 펌프 인버터 제어반 최종 검수</td>
+                                        <td class="py-4 px-2 text-right">
+                                            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-semibold bg-slate-800 text-slate-400 border border-slate-700">
+                                                출동예정
+                                            </span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- Tab Content 2: AI Knowledgebase Simulator -->
+                        <div x-show="intranetTab === 'ai'" x-transition:enter="transition opacity duration-300" class="space-y-6">
+                            <div class="bg-slate-950 p-6 rounded-2xl border border-slate-800 text-slate-300 text-xs leading-relaxed">
+                                <span class="text-rose-400 font-bold block mb-2"><i class="fa-solid fa-circle-info mr-1"></i> 현장 정비 AI 지식베이스 (NotebookLM 연동)</span>
+                                입찰 시방서, 설비 도면(PDF, HWP, CAD 텍스트 파일)을 아래 영역에 임포트하면 사내 AI 파서와 실시간 가압 기술 지식 모델을 트레이닝하여 맞춤형 유지보수 조치 스펙을 추출해냅니다.
+                            </div>
+                            <!-- Drag and Drop simulated box -->
+                            <div @dragover.prevent="isDragOver = true" 
+                                 @dragleave.prevent="isDragOver = false" 
+                                 @drop.prevent="isDragOver = false; triggerDemoUpload()" 
+                                 @click="triggerDemoUpload()"
+                                 :class="isDragOver ? 'border-rose-500 bg-rose-500/5' : 'border-slate-700 bg-slate-950/40 hover:border-slate-500'" 
+                                 class="border-2 border-dashed rounded-2xl p-10 flex flex-col items-center justify-center cursor-pointer transition-all">
+                                <i class="fa-solid fa-cloud-arrow-up text-4xl" :class="isIngesting ? 'text-rose-400 animate-bounce' : 'text-slate-500'"></i>
+                                <span class="font-extrabold text-sm text-white mt-4">정비 지침서 파일 드래그앤드롭 또는 클릭</span>
+                                <span class="text-[10px] text-slate-500 mt-1">지원형식: PDF, HWP, HWPX, TXT (최대 100MB)</span>
+                            </div>
+                            <!-- Progress simulation bar -->
+                            <div x-show="isIngesting" x-transition class="space-y-2">
+                                <div class="flex justify-between text-[10px] text-slate-400 font-bold uppercase">
+                                    <span class="animate-progress text-rose-400">지식베이스 임베딩 파이프라인 분석 중...</span>
+                                    <span x-text="`${uploadProgress}%`"></span >
+                                </div>
+                                <div class="w-full bg-slate-950 h-2 rounded-full overflow-hidden border border-slate-800">
+                                    <div class="bg-gradient-to-r from-rose-500 to-cyan-400 h-full transition-all duration-300" :style="`width: ${uploadProgress}%`"></div>
+                                </div>
+                            </div>
+                            <!-- AI Output Logs Console -->
+                            <div class="bg-black p-4 rounded-xl border border-slate-800 font-mono text-[10px] text-emerald-400 space-y-1 h-32 overflow-y-auto">
+                                <div class="text-slate-500">// AI 파서 트레이닝 로그 화면...</div>
+                                <template x-for="log in aiLogs">
+                                    <div x-text="log"></div>
+                                </template>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Right 1/3: Notice board -->
+                <div class="bg-slate-900 border border-slate-800 rounded-3xl p-8 shadow-2xl flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-base font-extrabold text-white mb-6 flex items-center gap-2">
+                            <i class="fa-solid fa-triangle-exclamation text-rose-500"></i> 사내 긴급 공지사항
+                        </h3>
+                        <div class="space-y-4">
+                            <!-- Notice 1 -->
+                            <div class="border-b border-slate-800/80 pb-4 hover:bg-slate-950/20 p-2 rounded-xl transition-colors">
+                                <div class="flex items-center gap-2 mb-1.5">
+                                    <span class="px-2 py-0.5 bg-rose-500/20 text-rose-500 font-bold text-[9px] rounded border border-rose-500/30">필독</span>
+                                    <span class="text-[10px] text-slate-500 font-mono">2026.06.14</span>
+                                </div>
+                                <h4 class="text-slate-200 text-xs font-bold leading-relaxed">하반기 소양정수장 증설 공사 안전보건 수칙 준수 지침</h4>
+                            </div>
+                            <!-- Notice 2 -->
+                            <div class="border-b border-slate-800/80 pb-4 hover:bg-slate-950/20 p-2 rounded-xl transition-colors">
+                                <div class="flex items-center gap-2 mb-1.5">
+                                    <span class="px-2 py-0.5 bg-rose-500/20 text-rose-500 font-bold text-[9px] rounded border border-rose-500/30">NEW</span>
+                                    <span class="text-[10px] text-slate-500 font-mono">2026.06.12</span>
+                                </div>
+                                <h4 class="text-slate-200 text-xs font-bold leading-relaxed">경영혁신형 중소기업(Main-Biz) 갱신 심사 서류 제출 건</h4>
+                            </div>
+                            <!-- Notice 3 -->
+                            <div class="border-b border-slate-800/80 pb-4 hover:bg-slate-950/20 p-2 rounded-xl transition-colors">
+                                <div class="flex items-center gap-2 mb-1.5">
+                                    <span class="px-2 py-0.5 bg-slate-800 text-slate-500 font-bold text-[9px] rounded border border-slate-700">알림</span>
+                                    <span class="text-[10px] text-slate-500 font-mono">2026.06.10</span>
+                                </div>
+                                <h4 class="text-slate-300 text-xs leading-relaxed">ISO 9001:2015 내부 감사 및 직무 교육 결과 보고서 등록</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="w-full text-center py-3 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold rounded-xl transition mt-6">
+                        전체 공지사항 목록 열람 &rarr;
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- Footer -->
+    <footer class="bg-slate-950 border-t border-slate-800 py-16">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <div>
+                <span class="text-2xl font-black text-white tracking-tight block mb-2">비에이텍<span class="text-brand-500">(주)</span></span>
+                <p class="text-slate-400 text-xs leading-relaxed">
+                    본사 및 공장: 강원특별자치도 춘천시 퇴계공단2길 64 (퇴계제2농공단지 내)<br>
+                    TEL: (033) 264-9243 | FAX: (033) 251-5747 | E-MAIL: batech@batech.co.kr
+                </p>
+            </div>
+            <div class="flex flex-col md:items-end gap-4">
+                <button @click="openPdfModal('ji.pdf', '비에이텍 전체 지명원', 'catalog')" 
+                        class="text-xs font-bold text-brand-400 hover:text-brand-300 bg-brand-500/10 border border-brand-500/20 px-6 py-3 rounded-xl transition w-max">
+                    전체 지명원 다운로드 (PDF)
+                </button>
+                <p class="text-slate-500 text-[10px] mt-2">
+                    &copy; 2026 Blue Advanced Technology. All rights reserved. Designed for Premium High-Tech.
+                </p>
+            </div>
+        </div>
+    </footer>
+    <!-- DOCUMENT LIGHTBOX MODAL (PDF / HWP / CATALOG MOCK VIEWER) -->
+    <div x-show="pdfModalOpen" style="display: none;" class="fixed inset-0 z-[100] flex items-center justify-center">
+        <!-- Backdrop -->
+        <div class="absolute inset-0 bg-slate-950/90 backdrop-blur-md" @click="pdfModalOpen = false; pdfSrc = ''"></div>
+        
+        <!-- Modal Content Container -->
+        <div class="bg-slate-900 w-11/12 max-w-6xl h-[85vh] rounded-3xl border border-slate-850 shadow-2xl flex flex-col relative z-10 overflow-hidden"
+             x-show="pdfModalOpen" x-transition:enter="ease-out duration-300" x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100">
+            <!-- Header -->
+            <div class="h-16 border-b border-slate-800 px-6 flex justify-between items-center bg-slate-950">
+                <div class="flex items-center gap-2">
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold" 
+                          :class="docType === 'pdf' ? 'bg-red-500/20 text-red-400 border border-red-500/20' : docType === 'hwp' ? 'bg-blue-500/20 text-blue-400 border border-blue-500/20' : 'bg-brand-500/20 text-brand-400 border border-brand-500/20'"
+                          x-text="docType.toUpperCase()">문서</span>
+                    <h3 class="font-extrabold text-white text-sm" x-text="modalTitle">문서 뷰어</h3>
+                </div>
+                <button @click="pdfModalOpen = false; pdfSrc = ''" class="p-2 hover:bg-slate-800 rounded-full text-slate-400 hover:text-white transition">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+            <!-- Viewer Area -->
+            <div class="flex-grow bg-slate-950 flex items-center justify-center relative overflow-hidden">
+                <!-- Loading indicator -->
+                <div x-show="docLoading" class="absolute inset-0 bg-slate-950 flex flex-col items-center justify-center text-slate-400 gap-4">
+                    <i class="fa-solid fa-spinner text-4xl text-brand-500 animate-spin"></i>
+                    <span class="text-xs">데이터 지식베이스 파싱 중...</span>
+                </div>
+                <!-- Simulation View for Local PDFs or Catalog Files -->
+                <div x-show="!docLoading" class="w-full h-full p-8 overflow-y-auto flex justify-center items-start">
+                    <div class="bg-slate-900 border border-slate-800 p-10 rounded-2xl w-full max-w-4xl text-slate-300 shadow-2xl relative">
+                        <!-- Top Doc Controls Decorator -->
+                        <div class="flex justify-between items-center border-b border-slate-800 pb-4 mb-6 text-xs text-slate-500">
+                            <div>PAGE 1 OF 4 &nbsp; | &nbsp; ZOOM 100%</div>
+                            <div class="flex gap-4">
+                                <i class="fa-solid fa-magnifying-glass-plus cursor-pointer hover:text-slate-300"></i>
+                                <i class="fa-solid fa-magnifying-glass-minus cursor-pointer hover:text-slate-300"></i>
+                                <i class="fa-solid fa-download cursor-pointer hover:text-slate-300"></i>
+                            </div>
+                        </div>
+                        <!-- Technical Blueprint / Graphic Simulation -->
+                        <div class="w-full bg-slate-950 rounded-xl border border-slate-800 p-8 mb-8 text-center flex flex-col items-center justify-center border-dashed relative overflow-hidden group">
+                            <!-- Blue laser-line glow effect -->
+                            <div class="absolute inset-0 bg-gradient-to-b from-brand-500/5 via-brand-500/10 to-transparent animate-pulse pointer-events-none"></div>
+                            
+                            <i class="fa-solid fa-gauge-high text-brand-400 text-5xl mb-4 group-hover:scale-110 transition-transform"></i>
+                            <span class="text-xs text-brand-400 font-mono tracking-widest uppercase block mb-1">BATECH HYDRAULIC BLUEPRINT</span>
+                            <h4 class="text-white font-extrabold text-base mb-2" x-text="modalTitle"></h4>
+                            <p class="text-[11px] text-slate-400 max-w-md">11대 모터 가압 펌프 정밀 설계 표준 도안 및 유체 압력 제어 파라미터 규격 문서</p>
+                        </div>
+                        <!-- Technical Spec Table Simulation -->
+                        <h4 class="text-white font-extrabold text-sm mb-4"><i class="fa-solid fa-list-check text-brand-400 mr-1"></i> 주요 설계 세부 규격 (Spec sheet)</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs mb-8">
+                            <div class="flex justify-between border-b border-slate-850 pb-2"><span class="text-slate-500">정격 전압 (Voltage)</span><span class="font-bold text-white">380V / 440V 삼상</span></div>
+                            <div class="flex justify-between border-b border-slate-850 pb-2"><span class="text-slate-500">모터 출력 (Output)</span><span class="font-bold text-white">10HP ~ 350HP 고효율</span></div>
+                            <div class="flex justify-between border-b border-slate-850 pb-2"><span class="text-slate-500">최대 양정 (Max Head)</span><span class="font-bold text-white">120m 대형양격</span></div>
+                            <div class="flex justify-between border-b border-slate-850 pb-2"><span class="text-slate-500">토출 량 (Discharge Flow)</span><span class="font-bold text-white">1.2 ㎥/min ~ 25 ㎥/min</span></div>
+                            <div class="flex justify-between border-b border-slate-850 pb-2"><span class="text-slate-500">가압 제어 정밀도</span><span class="font-bold text-white">±0.05 bar 인버터 연동</span></div>
+                            <div class="flex justify-between border-b border-slate-850 pb-2"><span class="text-slate-500">환경 표준 승인</span><span class="font-bold text-white">ISO 9001 / Main-Biz 직접생산</span></div>
+                        </div>
+                        <!-- Technical Description -->
+                        <h4 class="text-white font-extrabold text-sm mb-4"><i class="fa-solid fa-circle-exclamation text-cyan-400 mr-1"></i> 안전 정비 가이드라인</h4>
+                        <p class="text-xs text-slate-400 leading-relaxed mb-6">
+                            본 설비는 강원특별자치도 상하수도 조달공급 표준 기구로서, 현장 설치 시 배관의 압력 편차와 임펠러 편심 가공 공차를 엄격히 검수해야 합니다. 
+                            초기 가동 시 공기 빼기(자흡 상태) 밸브 상태를 모니터링하여 임펠러 소손을 미연에 방지하시고, 24시간 가압 이상 검출 모듈 시뮬레이션을 필히 선행하시기 바랍니다.
+                        </p>
+                        <!-- Actions footer inside mock viewer -->
+                        <div class="flex justify-end gap-3 mt-4 border-t border-slate-800 pt-6">
+                            <button @click="pdfModalOpen = false; pdfSrc = ''" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-white rounded-lg text-xs font-bold transition">
+                                닫기
+                            </button>
+                            <button @click="alert('가상 문서 다운로드 완료 (실제 운영 배포 시 해당 PDF/HWP 문서가 다운로드 처리됩니다)')" 
+                                    class="px-4 py-2 bg-brand-500 hover:bg-brand-400 text-slate-950 rounded-lg text-xs font-bold transition">
+                                파일 다운로드
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Intersection Observer Script for Smooth Animations -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Observe elements with 'fade-up' class
+            const fadeElements = document.querySelectorAll('.fade-up');
+            
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15
+            };
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const delay = entry.target.getAttribute('data-delay') || 0;
+                        setTimeout(() => {
+                            entry.target.classList.add('show');
+                        }, delay);
+                        // Once the animation fires, we stop observing the element
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+            fadeElements.forEach(el => observer.observe(el));
+            // Observe timeline items
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            const timelineObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('show');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                root: null,
+                threshold: 0.2,
+                rootMargin: '0px'
+            });
+            timelineItems.forEach(item => timelineObserver.observe(item));
+        });
+    </script>
+</body>
+</html>
